@@ -1,18 +1,34 @@
+title:            Site Title
+description:      Describe your website here.
+
+# Analytics and webmaster tools stuff goes here
+google_analytics:
+google_verify:
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone:    America/Vancouver
+
+#url: "https://timani.co.za/" # the base hostname & protocol for your site
+
 safe:        false
-auto:        false
-server:      false
-server_port: 4000
-base-url:    /
+#auto:        false
+#server:      false
+#server_port: 4000
+#base-url:    /
+base-url:    http://127.0.0.1:4000
 
 source:      .
 destination: ./_site
-plugins:     ./_plugins
+plugins_dir:     ./_plugins
 
 future:      true
 lsi:         false
-pygments:    false
-markdown:    maruku
-permalink:   pretty      
+highlighter:    false
+#markdown:    maruku
+permalink:   pretty
+num_posts: 10
 #
 # https://github.com/mojombo/jekyll/wiki/Permalinks
 #
@@ -22,7 +38,7 @@ permalink:   pretty
 # month  Month from the post’s filename
 # day  Day from the post’s filename
 # title  Title from the post’s filename
-# categories   The specified categories for this post. Jekyll automatically parses out double slashes in the URLs, so if no categories are present, it basically ignores this.   
+# categories   The specified categories for this post. Jekyll automatically parses out double slashes in the URLs, so if no categories are present, it basically ignores this.
 
 # Built-in styles
 # Name  Template
@@ -51,8 +67,8 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  use_coderay: false
-  
+  enable_coderay: false
+
   coderay:
     coderay_wrap: div
     coderay_line_numbers: inline
@@ -61,4 +77,4 @@ kramdown:
     coderay_bold_every: 10
     coderay_css: style
 
-exclude: config.rb
+exclude: ['config.rb', 'Gemfile.lock']

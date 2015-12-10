@@ -1,2 +1,5 @@
 .sass-cache
 compass_app_log.txt
+
+# Gemfile lock file
+Gemfile.lock
