@@ -7,39 +7,40 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 <!--more-->
 
-### Summary
+##### Summary
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
 <img src="https://blog.phusion.nl/wp-content/uploads/2013/11/docker.png" /> <img src="http://symfony.com/uploads/projects/sculpin.png" />
 
-### Overview
+##### Overview
 
 Allow your teams to use their favorite Agile lifecycle tools while maintaining full visibility and control.
 Requirements
 
-### Getting started  
+##### Getting started  
 
 - what this section is about
 - why it matters
 - research or examples
 - takeaways
 
-### Installing Test kitchen
+##### Installing Test kitchen
 
 - what this section is about
 - why it matters
 - research or examples
-### Publish and share the images
 
-#### Create a github repo
+##### Publish and share the images
+
+##### Create a github repo
 Images will appear in the general search, as well as an image search. Narrow your search results to only images by selecting “Images”.
 
  - Here you can search for any topic that interests you,
  -  find  information, images, quotes, citations  
  - More, and then quickly insert  them into your document.
 
-#### Committing the changes
+##### Committing the changes
 Create a new post in `source/_posts` and add the snippet below to a file named brining-documentation-to-life-with-docker.md
 
 <pre><code  data-language="shell">
@@ -56,7 +57,7 @@ git commit -m “Adding spacing and changing the post link color”
 git push origin docker_sculpin
 </code></pre>
 
-#### Continuous Integration with CircleCI
+##### Continuous Integration with CircleCI
 
 When conducting a search, the Research tool will show you different types of results — web results, images, tables, quotations, maps, reviews, personal results, and more.
 
@@ -98,7 +99,7 @@ test:
 
 - takeaways
 
-#### Copy the skeleton sculpin project to the current directory
+##### Copy the skeleton sculpin project to the current directory
 
 - what this section is about
 - why it matters
@@ -106,10 +107,10 @@ test:
 - takeaways
 
 
-#### Conclusion
+##### Conclusion
 
 Use composer to download and manage the dependencies for the project. When that is done, we can proceed to install sculpin and generate the project.
 
-#### What's next?
+##### What's next?
 
 Use the Research tool's dictionary to search for definitions, synonyms, and usage examples. If you don't already have the Research tool open, you can access the dictionary by clicking the Tools menu and then selecting Define.
