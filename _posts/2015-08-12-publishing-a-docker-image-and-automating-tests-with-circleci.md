@@ -11,8 +11,6 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
-<img src="https://blog.phusion.nl/wp-content/uploads/2013/11/docker.png" /> <img src="http://symfony.com/uploads/projects/sculpin.png" />
-
 ##### Overview
 
 Allow your teams to use their favorite Agile lifecycle tools while maintaining full visibility and control.
