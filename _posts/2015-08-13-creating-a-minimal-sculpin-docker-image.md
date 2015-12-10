@@ -7,18 +7,18 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 <!--more-->
 
-### Summary
+##### Summary
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
 <img src="https://blog.phusion.nl/wp-content/uploads/2013/11/docker.png" /> <img src="http://symfony.com/uploads/projects/sculpin.png" />
 
-### Overview
+##### Overview
 
 Allow your teams to use their favorite Agile lifecycle tools while maintaining full visibility and control.
 Requirements
 
-### Getting started  
+##### Getting started  
 
 - what this section is about
 - why it matters
@@ -34,13 +34,13 @@ Requirements
   - Installing with Vagrant
 - takeaways
 
-### Copy the skeleton sculpin project to the current directory
+##### Copy the skeleton sculpin project to the current directory
 
 - what this section is about
 - why it matters
 - research or examples
 
-##### Step 1: Install dependencies with bundler
+###### Step 1: Install dependencies with bundler
 
 <pre><code  data-language="shell">
 git clone https://github.com/sculpin/sculpin-blog-skeleton.git .
@@ -65,7 +65,7 @@ Now with our updated.
     ├── ...
 </code></pre>
 
-##### Step 2: Start the sculpin container
+###### Step 2: Start the sculpin container
 
 Install ruby and the bundler gem so it is available within the container.
 <pre><code  data-language="shell">
@@ -88,7 +88,7 @@ docker run  -v ./:/var/www/ -p 8000:8000 timani/sculpin /bash
 
 We can quickly test the new container by going to the URL that is returned. The docker logs command allows us to see output from within the STDOUT of the container.
 
-##### Step 3: List the currently running container
+###### Step 3: List the currently running container
 <pre><code  data-language="shell">
 docker ps
 
@@ -98,7 +98,7 @@ docker logs
 
 This will allow us to read the output of STDOUT from the container so we keep track of the composer install and sculpin site generation process. When the installation process is complete, you can check out the new site.
 
-#### Previewing the Sculpin site
+##### Previewing the Sculpin site
 
 - what this section is about
 - why it matters
@@ -110,16 +110,15 @@ Next we use the docker run command to set up a container that will come bundled 
 
 - takeaways
 
-#### Create post
-
+##### Create post
 
 <img src="https://asciinema.org/a/624fjx2rx7k3pctdozw7m8b24.png" width="100%" />
 
 
-#### Conclusion
+##### Conclusion
 
 Use composer to download and manage the dependencies for the project. When that is done, we can proceed to install sculpin and generate the project.
 
-#### What's next?
+##### What's next?
 
 Use the Research tool's dictionary to search for definitions, synonyms, and usage examples. If you don't already have the Research tool open, you can access the dictionary by clicking the Tools menu and then selecting Define.

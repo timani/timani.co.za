@@ -3,17 +3,17 @@ layout: post
 title: "Lessons learned from presenting at my Drupalcon LA 2015"
 ---
 
-#### Summary
+##### Summary
 
 Want to create a simple to use and beautiful blog with <a href="http://ghost.org/">Ghost</a>? Thanks to DigitalOcean's one-click "application" installation, you can create a droplet with Ghost pre-installed, running and ready to go in just a few short minutes!
 
-#### Introduction
+##### Introduction
 
 Want to create a simple to use and beautiful blog with <a href="http://ghost.org/">Ghost</a>? Thanks to DigitalOcean's one-click "application" installation, you can create a droplet with Ghost pre-installed, running and ready to go in just a few short minutes!
 
 The instructions below will take you from zero to blog, but they do assume that you already have an account with DigitalOcean. If you haven't, then head on over to the <a href="https://www.digitalocean.com/registrations/new">sign up page</a>.
 
-#### Step 1: Create a Ghost Droplet
+###### Step 1: Create a Ghost Droplet
 
 In your DigitalOcean control panel, press the <a href="https://www.digitalocean.com/droplets/new">Create Droplet</a> button, to be taken to the creation screen.
 
@@ -37,7 +37,7 @@ Once your Droplet is ready, you'll see a screen like this one:
 
 If you open the IP address - which is <code>162.243.43.52</code> in the example above - in your favourite browser, you'll see your new Ghost blog is already up and running!
 
-#### Step 2: Setting up a domain name</h4>
+###### Step 2: Setting up a domain name</h4>
 
 You now have your very own Ghost blog, but accessing it via an IP address probably isn't what you want. There are 3 steps to setting up a custom domain.
 
