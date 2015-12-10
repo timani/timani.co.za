@@ -7,7 +7,7 @@ permalink: "blog/index.html"
 {% for post in site.posts limit:site.data.theme.num_home_posts %}
 <article class="h-entry">
   <h4 class="post-title-home">
-    <a href="{{ post.url | prepend:site.baseurl }}">{{ post.title }}</a>
+    <a href="{{ post.url | prepend:site.base-url }}">{{ post.title }}</a>
   </h4>
   <p class="meta-section tags">
       Posted by: <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa" href="#">W. Developer</a>  on
