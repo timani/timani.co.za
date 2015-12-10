@@ -6,20 +6,20 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 <!--more-->
 
-### Summary
+##### Summary
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
 <img src="https://blog.phusion.nl/wp-content/uploads/2013/11/docker.png" /> <img src="http://symfony.com/uploads/projects/sculpin.png" />
 
-### Overview
+##### Overview
 
 Allow your teams to use their favorite Agile lifecycle tools while maintaining full visibility and control.
 Requirements
 
 - Test Driven Development for containers with serverspec
 
-### Getting started  
+##### Getting started  
 
 - what this section is about
 - why it matters
@@ -34,7 +34,7 @@ Requirements
 
 Here you can search for any topic that interests you, find information, images, quotes, citations and more, and then quickly insert them into your document.
 
-<table class="mdl-data-table mdl-js-data-table" width="100%">
+<table class="mdl-data-table mdl-js-data-table" />
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric" >Section</th>
@@ -69,14 +69,14 @@ Table 1:
 
 - takeaways
 
-### Installing Test kitchen
+##### Installing Test kitchen
 
 - what this section is about
 - why it matters
 - research or examples
 - takeaways
 
-### Write initial Serverspec tests
+##### Write initial Serverspec tests
 
 - what this section is about
 
@@ -186,7 +186,7 @@ Excellent, 3 failures messages just as we had hoped. The reason is because our d
 
 - takeaways
 
-### Building the docker image
+##### Building the docker image
 
 - what this section is about
 - why it matters
@@ -233,7 +233,7 @@ Updated project directory with the new Docker tests
 
 - takeaways
 
-### Build Docker image and run test -> `GREEN`
+##### Build Docker image and run test -> `GREEN`
 
 - what this section is about
 - why it matters
@@ -251,7 +251,7 @@ Excellent, 3 success messages just as we had hoped. The reason is because our do
 
 - takeaways
 
-### Adding Vagrant Support
+##### Adding Vagrant Support
 
 - what this section is about
 - why it matters
