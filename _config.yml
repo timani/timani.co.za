@@ -16,7 +16,7 @@ safe:        false
 #auto:        false
 #server:      false
 #server_port: 4000
-base-url:     / #"https://timani.github.io/timani.co.za/"
+base-url:     "https://timani.github.io/timani.co.za/"
 #base-url:    http://127.0.0.1:4000
 
 source:      .
