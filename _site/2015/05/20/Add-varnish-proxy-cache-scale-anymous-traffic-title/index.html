@@ -70,15 +70,18 @@
     <script src="https://timani.github.io/timani.co.za/js/libs/respond.min.js"></script>
   </head>
 
-<body>
+  <body>
 
-    <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
+          <header class="demo-header mdl-layout__header mdl-layout__header--scroll  mdl-color--grey-100 mdl-color-text--grey-800">
   <div class="mdl-layout__header-row">
     <div class="mdl-layout__drawer-button"><i class="material-icons">menu</i></div>
     <div class="mdl-layout-spacer"></div>
-    <nav class="android-navigation mdl-navigation">
-      <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/about/index.html">About</a>
-      <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/contact/index.html">Contact</a>
+    <nav class="demo-navigation mdl-navigation">
+      <a class="mdl-navigation__link" target="_blank" href="https://twitter.com/timani_net/">Twitter</a>
+      <a class="mdl-navigation__link" target="_blank" href="https://github.com/timani/">Github</a>
+      <a class="mdl-navigation__link" target="_blank" href="https://timani.github.io/timani.co.za/rss.xml">RSS</a>
     </nav>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
       <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -98,32 +101,33 @@
       <main  class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
           <div class="demo-content mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-              <div class="mdl-layout__header-row" id="top-nav" style="
-    clear: both;
-    display: block;
-    text-align: center;
-">
-
-  <div style="
-    overflow: hidden;
-    display: block;
-    clear: both;
-    width: 100%;
-"><img src="http://placehold.it/200x200" style="
-    border-radius: 101px;
-"><div class="android-navigation-container">
-            <nav class="android-navigation mdl-navigation">
-            <span class="mdl-layout-title">
-              <a href="https://timani.github.io/timani.co.za" class="mdl-navigation__link mdl-typography--text-uppercase">Home</a>
-            </span>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/blog/index.html">Blog</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/archives/index.html">Archives</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/about/index.html">About</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/contact/index.html">Contact</a>
-            </nav>
-          </div></div>
-
+              <div class="mdl-layout__header-row" id="top-nav" style="clear: both;display: block;text-align: center;">
+  <div style="overflow: hidden;display: block;clear: both;width: 100%;">
+    <p>
+      <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/">
+        <img src="https://timani.github.io/timani.co.za/img/placeholder.png" style="border-radius: 101px;">
+      </a>
+    </p>
+    <div class="main-nav-container">
+      <nav class="main-nav mdl-navigation">
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/blog/index.html">Home</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/archives/index.html">Archives</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/about/index.html">About</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://timani.github.io/timani.co.za/contact/index.html">Contact</a>
+      </nav>
+    </div>
+  </div>
 </div>
+
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Title</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
 
               <div class="demo-crumbs mdl-color-text--grey-500">
                 <a href="https://timani.github.io/timani.co.za" class="mdl-color-text--grey-500">Home</a> &raquo;
@@ -132,10 +136,10 @@
               </div>
 
               <article class="h-entry">
-                <h3 class="entry-title">Add Varnish as a proxy cache to handle anonymous traffic - Part 3 of 3</h3>
+                <h4 class="entry-title">Add Varnish as a proxy cache to handle anonymous traffic - Part 3 of 3</h4>
                 <div class="e-content">
                   <div>
-                    <p class="meta-section tags">
+                    <p class="meta-section tags  mdl-typography--text-uppercase">
                       Posted <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa; display:none" href="#">W. Developer</a>  on
                       <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
                        <span class="hashtag-icon"> Categories: </span>

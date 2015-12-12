@@ -1,11 +1,7 @@
 ---
-layout: page
+layout: default
 title: "Contact Timani Tunduwani"
 permalink: contact/index.html
 ---
-# about page for h5bp jekyll template
-about-y
 
-<div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-              Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-            </div>
+Almost everybody thinks cloud computing is new concept where as truth is the idea was actually created in the 1960’s. A man called Joseph Carl Robnett Licklider or J.C.R. was one of America’s leading computer scientists. At a similar time another computer scientist called John McCarthy, who was famous for coining the term “artificial intelligence”, also believed that we would have a world-wide computer network.

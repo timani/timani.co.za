@@ -1,7 +1,7 @@
 {% include head.html %}
-<body>
 
-    {% include menu.html %}
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
+          {% include menu.html %}
 <a href="#" target="_blank" id="view-source"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" data-upgraded=",MaterialButton,MaterialRipple">View Source<span class="mdl-button__ripple-container">
   <span class="mdl-ripple is-animating" ></span></span></a>
       <main  class="demo-main mdl-layout__content">
@@ -15,10 +15,10 @@
               </div>
 
               <article class="h-entry">
-                <h3 class="entry-title">{{ page.title }}</h3>
+                <h4 class="entry-title">{{ page.title }}</h4>
                 <div class="e-content">
                   <div>
-                    <p class="meta-section tags">
+                    <p class="meta-section tags  mdl-typography--text-uppercase">
                       Posted <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa; display:none" href="#">W. Developer</a>  on
                       <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
                        <span class="hashtag-icon"> Categories: </span>

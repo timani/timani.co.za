@@ -1,8 +1,7 @@
 {% include head.html %}
-<body>
 
     {% include menu.html %}
-<a href="#" target="_blank" id="view-source"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" data-upgraded=",MaterialButton,MaterialRipple">View Source<span class="mdl-button__ripple-container">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
   <span class="mdl-ripple is-animating" ></span></span></a>
       <main  class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
@@ -13,9 +12,8 @@
         </div>
       </main>
 
-    {% include footer.html %}
-
-
+    {% include footer.html %}    
+   </div>
     <div id="container">  </div> <!--! end of #container -->
 {% include scripts.html %}
 {% include analytics.html %}
