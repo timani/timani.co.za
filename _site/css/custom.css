@@ -30,8 +30,10 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
     text-decoration: none;
     font-weight: bold;
 }
+
 #top-nav {
   height: auto;
+  padding: 0;
 }
 .demo-ribbon {
   width: 100%;
@@ -154,6 +156,7 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
   margin: 20px 0 40px;
 }
 .demo-crumbs a {
+    color: #00bcd4 !important;
     font-weight: normal;
     text-decoration: none;
 }
@@ -165,7 +168,6 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
   margin: 25px 0 50px;
 }
 .main-nav a.mdl-navigation__link.mdl-typography--text-uppercase {
-    font-size: 20px;
     /* font-weight: bold; */
     text-transform: none;
 }
@@ -173,7 +175,6 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
   color: #333;
 }
 
-.mdl-layout__header-row .mdl-navigation.main-nav {
-  width: 70%;
+.mdl-layout__header-row .mdl-navigation.main-nav { 
   margin: 0 auto;
 }

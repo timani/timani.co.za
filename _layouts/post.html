@@ -10,8 +10,7 @@
               {% include nav.html %}
               <div class="demo-crumbs mdl-color-text--grey-500">
                 <a href="{{site.base-url}}" class="mdl-color-text--grey-500">Home</a> &raquo;
-                <a href="{{site.base-url}}/blog/index.html" class="mdl-color-text--grey-500">Blog</a> &raquo;
- &gt; {{ page.title }}
+                <a href="{{site.base-url}}/blog/index.html" class="mdl-color-text--grey-500">Blog</a> &raquo; {{ page.title }}
               </div>
 
               <article class="h-entry">
@@ -26,11 +25,6 @@
                        <a class="" href="/community/tags/ghost?type=tutorials">Ghost</a>,
                        <a class="" href="/community/tags/nginx?type=tutorials">Nginx</a>
                     </p>
-                  </div>
-                  <div class="section-spacer"></div>
-                  <div>
-                    <div class="icon material-icons" role="presentation" id="social-share" >share</div>
-                    <div class="mdl-tooltip" for="social-share">share</div>
                   </div>
                 </div>
                   {{ content }}
