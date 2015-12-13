@@ -10,7 +10,7 @@ permalink: "blog/index.html"
     <a href="{{ post.url | prepend:site.base-url }}">{{ post.title }}</a>
   </h5>
   <p class="meta-section tags">
-      Posted by: <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa" href="#">W. Developer</a>  on
+      Posted:
       <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
        <span class="hashtag-icon"> Categories: </span> <a class="" href="/community/tags/one-click-install-apps?type=tutorials">One-Click Install Apps</a>, <a class="" href="/community/tags/ghost?type=tutorials">Ghost</a>, <a class="" href="/community/tags/nginx?type=tutorials">Nginx</a> <a class="" href="/community/tags/ubuntu?type=tutorials">Ubuntu</a></span>
     </p>

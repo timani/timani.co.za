@@ -12,22 +12,61 @@
                 <a href="{{site.base-url}}" class="mdl-color-text--grey-500">Home</a> &raquo;
                 <a href="{{site.base-url}}/blog/index.html" class="mdl-color-text--grey-500">Blog</a> &raquo; {{ page.title }}
               </div>
-
               <article class="h-entry">
                 <h4 class="entry-title">{{ page.title }}</h4>
                 <div class="e-content">
                   <div>
-                    <p class="meta-section tags  mdl-typography--text-uppercase">
-                      Posted <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa; display:none" href="#">W. Developer</a>  on
-                      <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
-                       <span class="hashtag-icon"> Categories: </span>
-                       <a class="" href="/community/tags/one-click-install-apps?type=tutorials">One-Click Install Apps</a>,
-                       <a class="" href="/community/tags/ghost?type=tutorials">Ghost</a>,
-                       <a class="" href="/community/tags/nginx?type=tutorials">Nginx</a>
-                    </p>
+                    <div class="mdl-layout-">
+                      <p class="meta-section tags mdl-color-text--grey-800">
+                        Posted <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa; display:none" href="#">W. Developer</a>  on
+                        <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
+                         <span class="hashtag-icon"> Categories: </span>
+                         <a class="" href="/community/tags/one-click-install-apps?type=tutorials">One-Click Install Apps</a>,
+                         <a class="" href="/community/tags/ghost?type=tutorials">Ghost</a>,
+                         <a class="" href="/community/tags/nginx?type=tutorials">Nginx</a>
+                      </p>
+                      </div>
+                    <div>
+                      <a href="#">
+                        <i class="fa fa-share-alt"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-link"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-linkedin"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-envelope-o"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
                   {{ content }}
+
+                  <div class="mdl-grid" style="
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+">
+  <div class="mdl-cell mdl-cell--6-col" style="
+    /* border-right: 1px solid #dedede; */
+"><div class="" style="">
+  <div>&laquo; Prev</div>
+                  <a class="url fn" href="https://timani.co.za">Publishing a docker image and automating tests with travisci - Part 3 of 4</a>
+                  <div class="adr"> <span class="country-name">Posted on Oct 14th, 2015</span></div>
+                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="#">proident minim</a></div></div>
+  <div class="mdl-cell mdl-cell--6-col" style="
+    border-left: 1px solid #efefef;
+    padding-left: 25px;
+"><div class="" style="">
+  <div>Next &raquo;</div>
+                  <a class="url fn" href="https://timani.co.za">Using minimal Sculpin docker image to developing static sites - Part 2 of 4</a>
+                  <div class="adr"> <span class="country-name">Posted on Nov 29th, 2015</span></div>
+                  Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Duis nulla tempor do aute et eiusmod velit exercitation nostrud quis <a href="#">proident minim</a></div></div>
+</div>
               </article>
               {% include hcard.html %}
 

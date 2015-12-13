@@ -171,10 +171,17 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
     /* font-weight: bold; */
     text-transform: none;
 }
+.main-nav .first {
+  padding-left: 0;
+}
+.main-nav-container {
+    margin: 0 auto;
+    width: 400px;
+}
 .mdl-layout__header .mdl-layout__drawer-button {
   color: #333;
 }
 
-.mdl-layout__header-row .mdl-navigation.main-nav { 
+.mdl-layout__header-row .mdl-navigation.main-nav {
   margin: 0 auto;
 }

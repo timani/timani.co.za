@@ -245,7 +245,6 @@ $ rspec spec/Dockerfile_spec.rb
 
 Excellent, 3 success messages just as we had hoped. The reason is because our docker image has met all of the dependencies based on the requirements
 
-<script type="text/javascript" src="https://asciinema.org/a/17516.js" id="asciicast-17516" async></script>
 
 - takeaways
 
