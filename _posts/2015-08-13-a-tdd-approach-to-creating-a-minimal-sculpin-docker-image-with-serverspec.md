@@ -1,11 +1,12 @@
 ---
 layout: post
 title: A TDD approach to creating a minimal Sculpin Docker image with Serverspec - Part 1 of 4
+categories: Docker, TDD
 ---
+
 We most frequently use Curl in the form of `libcurl`, a C library providing function transferring data between servers using many of the popular protocols like HTTP, FTP, SCP, and so on. This library is the foundation things like all the curl_*() functions in PHP, which are useful for writing code that interacts with various web services.
 
 <!--more-->
-<img src="http://serverspec.org/images/logo.png"  />
 
 ##### Summary
 
@@ -47,6 +48,7 @@ Requirements
 
 - what this section is about
 - why it matters
+
 Defining requirements
 
 - research or examples
@@ -56,34 +58,74 @@ Here you can search for any topic that interests you, find information, images, 
 <table class="mdl-data-table mdl-js-data-table" width="100%">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric" >Section</th>
+      <th class="mdl-data-table__cell--non-numeric" >Component</th>
       <th class="mdl-data-table__cell--non-numeric" >Description</th>
+      <th class="mdl-data-table__cell--non-numeric" >Type</th>
+      <th class="mdl-data-table__cell--non-numeric" >Condition</th>
+      <th class="mdl-data-table__cell--non-numeric" >Criteria</th>
       <th class="mdl-data-table__cell--non-numeric" >Status</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric">Configuration</td>
-      <td class="mdl-data-table__cell--non-numeric">Branch</td>
-      <td class="mdl-data-table__cell--non-numeric" >Failed</td>
+      <td class="mdl-data-table__cell--non-numeric">Base</td>
+      <td class="mdl-data-table__cell--non-numeric">fcgi</td>
+      <td class="mdl-data-table__cell--non-numeric">package</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
     </tr>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric" >Configuration</td>
-      <td class="mdl-data-table__cell--non-numeric" >Tag</td>
-      <td class="mdl-data-table__cell--non-numeric" >Failed</td>
+      <td class="mdl-data-table__cell--non-numeric" >Base</td>
+      <td class="mdl-data-table__cell--non-numeric" >git</td>
+      <td class="mdl-data-table__cell--non-numeric" >package</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
     </tr>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric" >Configuration</td>
+      <td class="mdl-data-table__cell--non-numeric" >Base</td>
+      <td class="mdl-data-table__cell--non-numeric" >tar</td>
+      <td class="mdl-data-table__cell--non-numeric" >package</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric" >Base</td>
+      <td class="mdl-data-table__cell--non-numeric" >zip</td>
+      <td class="mdl-data-table__cell--non-numeric" >package</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric" >Base</td>
       <td class="mdl-data-table__cell--non-numeric">Tag</td>
-      <td class="mdl-data-table__cell--non-numeric" >Failed</td>
+      <td class="mdl-data-table__cell--non-numeric" >file</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" ><code>Alpine Linux</code></td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
     </tr>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric" >Configuration</td>
-      <td class="mdl-data-table__cell--non-numeric" >Branch</td>
-      <td class="mdl-data-table__cell--non-numeric" >Failed</td>
+      <td class="mdl-data-table__cell--non-numeric" >Base</td>
+      <td class="mdl-data-table__cell--non-numeric" >composer</td>
+      <td class="mdl-data-table__cell--non-numeric" >command</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should match</td>
+      <td class="mdl-data-table__cell--non-numeric" ><code>/usr/local/bin/composer</code></td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric" >Base</td>
+      <td class="mdl-data-table__cell--non-numeric" >sculpin</td>
+      <td class="mdl-data-table__cell--non-numeric" >command</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should match</td>
+      <td class="mdl-data-table__cell--non-numeric" ><code>/usr/local/bin/sculpin</code></td>
+      <td class="mdl-data-table__cell--non-numeric" >****</td>
     </tr>
   </tbody>
 </table>
+
 Table 1: Docker PHP requirements
 - takeaways
 

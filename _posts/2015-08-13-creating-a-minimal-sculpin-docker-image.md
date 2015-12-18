@@ -1,7 +1,9 @@
 ---
 layout: post
-title: Using minimal Sculpin docker image to developing static sites - Part 2 of 4
-Categories: docker
+title: Adding PHP libraries to the sculpin docker image - Part 2 of 4
+Categories: Docker, TDD
+Next: 2015/08/12/publishing-a-docker-image-and-automating-tests-with-circleci/
+Prev: 2015/08/13/a-tdd-approach-to-creating-a-minimal-sculpin-docker-image-with-serverspec/
 ---
 We most frequently use Curl in the form of `libcurl`, a C library providing function transferring data between servers using many of the popular protocols like HTTP, FTP, SCP, and so on. This library is the foundation things like all the curl_*() functions in PHP, which are useful for writing code that interacts with various web services.
 
@@ -11,38 +13,110 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
+###### Table of contents
+
+  * [Overview](#gh-md-toc)
+    * [Status and Content](#local-files)
+  * [Requirements](#installation)
+    * [Before you begin](#local-files)
+  * [Getting started](#table-of-contents)
+    * [Defining Requirements](#local-files)
+  * [Tesk Kitchen](#usage)
+    * [Kitchen List](#local-files)
+    * [Kitchen Converge](#local-files)
+    * [Kichen Verify](#multiple-files)
+    * [Kitchen Test](#combo)
+  * [Build Docker image](#tests)
+    * [Kitchen List](#local-files)
+    * [Kitchen Converge](#local-files)
+    * [Kichen Verify](#multiple-files)
+    * [Kitchen Test](#combo)
+  * [Conclusion](#dependency)
+
 ##### Overview
 
 Allow your teams to use their favorite Agile lifecycle tools while maintaining full visibility and control.
 Requirements
 
+- Test Driven Development for containers with serverspec
+
 ##### Getting started  
 
 - what this section is about
 - why it matters
+Defining requirements
+
 - research or examples
+
+Here you can search for any topic that interests you, find information, images, quotes, citations and more, and then quickly insert them into your document.
+
+<table class="mdl-data-table mdl-js-data-table" width="100%">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric" >Component</th>
+      <th class="mdl-data-table__cell--non-numeric" >Description</th>
+      <th class="mdl-data-table__cell--non-numeric" >Type</th>
+      <th class="mdl-data-table__cell--non-numeric" >Condition</th>
+      <th class="mdl-data-table__cell--non-numeric" >Criteria</th>
+      <th class="mdl-data-table__cell--non-numeric" >Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">PHP</td>
+      <td class="mdl-data-table__cell--non-numeric">php-common</td>
+      <td class="mdl-data-table__cell--non-numeric">file</td>
+      <td class="mdl-data-table__cell--non-numeric">Should be</td>
+      <td class="mdl-data-table__cell--non-numeric">a file</td>
+      <td class="mdl-data-table__cell--non-numeric">****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">PHP</td>
+      <td class="mdl-data-table__cell--non-numeric">php-iconv</td>
+      <td class="mdl-data-table__cell--non-numeric">file</td>
+      <td class="mdl-data-table__cell--non-numeric">Should be</td>
+      <td class="mdl-data-table__cell--non-numeric">a file</td>
+      <td class="mdl-data-table__cell--non-numeric">****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">PHP</td>
+      <td class="mdl-data-table__cell--non-numeric">php-phar</td>
+      <td class="mdl-data-table__cell--non-numeric">file</td>
+      <td class="mdl-data-table__cell--non-numeric">Should be</td>
+      <td class="mdl-data-table__cell--non-numeric">a file</td>
+      <td class="mdl-data-table__cell--non-numeric">****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">PHP</td>
+      <td class="mdl-data-table__cell--non-numeric">php-ctype</td>
+      <td class="mdl-data-table__cell--non-numeric">file</td>
+      <td class="mdl-data-table__cell--non-numeric">Should be</td>
+      <td class="mdl-data-table__cell--non-numeric">a file</td>
+      <td class="mdl-data-table__cell--non-numeric">****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">PHP</td>
+      <td class="mdl-data-table__cell--non-numeric">php-zip</td>
+      <td class="mdl-data-table__cell--non-numeric">file</td>
+      <td class="mdl-data-table__cell--non-numeric">Should be</td>
+      <td class="mdl-data-table__cell--non-numeric">a file</td>
+      <td class="mdl-data-table__cell--non-numeric">****</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">PHP</td>
+      <td class="mdl-data-table__cell--non-numeric">php-json</td>
+      <td class="mdl-data-table__cell--non-numeric">file</td>
+      <td class="mdl-data-table__cell--non-numeric">Should be</td>
+      <td class="mdl-data-table__cell--non-numeric">a file</td>
+      <td class="mdl-data-table__cell--non-numeric">****</td>
+    </tr>
+  </tbody>
+</table>
+
+
+Table 1: Docker PHP requirements
 - takeaways
 
-##### Installing Test kitchen
-
-- what this section is about
-- why it matters
-- research or examples
-  - Installing with docker
-  - Installing with Vagrant
-- takeaways
-
-##### Copy the skeleton sculpin project to the current directory
-
-- what this section is about
-- why it matters
-- research or examples
-
-###### Step 1: Install dependencies with bundler
-
-<pre><code  data-language="shell">
-git clone https://github.com/sculpin/sculpin-blog-skeleton.git .
-</code></pre>
 
 Now with our updated.
 <pre><code  data-language="shell">
