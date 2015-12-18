@@ -60,14 +60,19 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
   width: calc(100% - 16px);
   margin: 0 auto;
 }
+@media only screen and (orientation: landscape) {
+  .demo-container {
+    max-width: 1600px;
+  }
+}
 
 .demo-content {
   border-radius: 0px;
-  margin: 0 auto;
+  margin: 120px auto 0;
 }
 
 .demo-header {
-  margin-bottom: 85px;
+  position: fixed;
 }
 
 .demo-layout.is-small-screen .demo-content {
@@ -184,4 +189,15 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
 
 .mdl-layout__header-row .mdl-navigation.main-nav {
   margin: 0 auto;
+}
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+    padding: 6px 10px;
+}
+
+.mdl-layout__drawer .mdl-navigation {
+  padding-top: 0;
+}
+.mdl-layout__drawer article {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }

@@ -3,7 +3,8 @@ layout: post
 title: "Introducing Shiori: A Bootstrap-Based Jekyll Theme"
 ---
 
-![Shiori](https://cloud.githubusercontent.com/assets/992008/3955483/2b9a77ae-2702-11e4-9f28-6afb051271de.png)
+
+Shiori is a [Bootstrap](http://getbootstrap.com/)-based [Jekyll](http://jekyllrb.com/) theme. It looks great by default, but you can customize it easily. It supports [Bootstrap](http://getbootstrap.com) and [Font Awesome](http://fontawesome.io) classes out of the box.
 
 ##### Introduction
 

@@ -5,10 +5,36 @@ title: A TDD approach to creating a minimal Sculpin Docker image with Serverspec
 We most frequently use Curl in the form of `libcurl`, a C library providing function transferring data between servers using many of the popular protocols like HTTP, FTP, SCP, and so on. This library is the foundation things like all the curl_*() functions in PHP, which are useful for writing code that interacts with various web services.
 
 <!--more-->
+<img src="http://serverspec.org/images/logo.png"  />
 
 ##### Summary
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
+
+###### Table of contents
+
+  * [Overview](#gh-md-toc)
+    * [TDD](#local-files)
+  * [Getting started](#table-of-contents)
+    * [Defining Requirements](#local-files)
+  * [Setting up Development environment](#installation)
+    * [Drivers](#local-files)
+    * [Provisioners](#local-files)
+    * [Platforms](#multiple-files)
+    * [Suites](#combo)
+  * [Tesk Kitchen](#usage)
+    * [Write a test](#remote-files)
+    * [Writing a playbook](#stdin)
+    * [Kitchen List](#local-files)
+    * [Kitchen Converge](#local-files)
+    * [Kichen Verify](#multiple-files)
+    * [Kitchen Test](#combo)
+  * [Build Docker image](#tests)
+    * [Kitchen List](#local-files)
+    * [Kitchen Converge](#local-files)
+    * [Kichen Verify](#multiple-files)
+    * [Kitchen Test](#combo)
+  * [Conclusion](#dependency)
 
 ##### Overview
 
@@ -21,18 +47,13 @@ Requirements
 
 - what this section is about
 - why it matters
-- research or examples
-- takeaways
+Defining requirements
 
-##### Defining requirements
-
-- what this section is about
-- why it matters
 - research or examples
 
 Here you can search for any topic that interests you, find information, images, quotes, citations and more, and then quickly insert them into your document.
 
-<table class="mdl-data-table mdl-js-data-table" />
+<table class="mdl-data-table mdl-js-data-table" width="100%">
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric" >Section</th>
@@ -63,46 +84,117 @@ Here you can search for any topic that interests you, find information, images, 
     </tr>
   </tbody>
 </table>
-Table 1:
-
+Table 1: Docker PHP requirements
 - takeaways
 
-##### Installing Test kitchen
+##### Setup the Development environment
 
 - what this section is about
+
+Once we have the requirements we can proceed to setup and configure test-kitchen.
+
 - why it matters
+
 - research or examples
+
+###### Step 1: Add Test Kitchen to a `Gemfile` within the project:
+
+<pre><code  data-language="ruby">source 'https://rubygems.org'
+gem 'test-kitchen', '~> 1.0'
+gem 'docker'
+gem 'serverspec'
+
+group :integration do
+  gem 'kitchen-docker', '~> 0.11'
+end
+</code></pre>
+
+This will install `test-kitchen`, `kitchen-docker` and `kitchen-ansible` to provision and test the docker image to make sure it meets our requirements.
+
+- `docker`: A "Test Kitchen driver" - it tells test-kitchen how to interact with an appliance (machine), such as Vagrant, EC2, Rackspace, etc.
+- `serverspec`: To validate the images we will use serverspec.
+- `kitchen-docker`: A "Test Kitchen driver" - it tells test-kitchen how to interact with an appliance (machine), such as Vagrant, EC2, Rackspace, etc.
+- `kitchen-ansible`: A provisioner for Test Kitchen to create and manage instances.
+
+###### Step 2: Run the `bundle` command to install
+
+<pre><code  data-language="shell"># Install dependencies
+$ bundle install
+# Verify Test Kitchen is installed, run the kitchen help command:
+$ bundle exec kitchen help
+# You should see something like:
+$ kitchen version   # Print Kitchen's version information
+Test Kitchen version 1.4.2
+</code></pre>
+
 - takeaways
 
-##### Write initial Serverspec tests
+##### Create the `kitchen.yml`
 
 - what this section is about
 
 The easiest way is to map out a table of the group or section that you will want to make sure is configured correctly. For example, in our case we will be looking at the Configuration of the container to make sure ruby is installed.
 
-<img src="http://serverspec.org/images/logo.png" width="100%" />
+<pre><code  data-language="yaml">---
+driver:
+  name: docker
+
+platforms:
+- name: ubuntu
+  driver_config:
+    image: ubuntu:14.04
+    platform: ubuntu
+  run_list:
+  - recipe[apt]
+</code></pre>
+
+###### Step 1: Drivers
+
+For example, in our case we will be looking at the Configuration. The easiest way is to map out a table of assignment.
+
+<pre><code  data-language="yaml">driver:
+  name: docker
+</code></pre>
+
+###### Step 2: Provisioners
+
+Tools used to converge an environment. During convergence the Configuration is run against a set of Platforms.
+
+<pre><code  data-language="yaml">provisioner:
+  name: ansible_playbook
+</code></pre>
+
+###### Step 3: Platforms
+Using the same Serverspec and RSpec tests we already use for our Ansible scripts. Thanks for the heads up and keep up the great work ;-). Operating systems
+
+<pre><code  data-language="yaml">platforms:
+- name: ubuntu
+  driver_config:
+    image: ubuntu:14.04
+    platform: ubuntu
+</code></pre>
+
+###### Step 4: Test Suites
+
+Using the same Serverspec and RSpec tests we already use for our Ansible scripts. Thanks for the heads up and keep up the great work ;-). Operating systems
+
+<pre><code  data-language="yaml">
+suites:
+- name: default
+  run_list:
+  ubuntu:
+</code></pre>
 
 - why it matters
 - research or examples
 - takeaways
 
 
-##### Step 1: Install dependencies with bundler
+#### Initialize Serverspec and create the first outline of our tests.
 
-In the root of the project directory add a file named Gemfile with the following:
+##### Step 1:Initialize Serverspec within the project
 
-<pre><code  data-language="shell">
-$ bundle install
-docker
-serverspec
-rspec
-rake
-</code></pre>
-
-##### Step 2: Initialize Serverspec and create the first outline of our tests.
-
-<pre><code  data-language="shell">
-$ serverspec-init
+<pre><code  data-language="shell">$ serverspec-init
 Select OS type:
 
   1) UN*X
@@ -129,12 +221,11 @@ Input target host name: www.example.jp
 
 - takeaways
 
-##### Step 3: Create Serverpec tests
+##### Step 2: Create Serverpec tests
 
 Based on the requirements we defined in the dependencies we can create the matching test suite
 
-<pre><code  data-language="ruby">
-# spec/Dockerfile_spec.rb
+<pre><code  data-language="ruby"># spec/Dockerfile_spec.rb
 
 require "serverspec"
 require "docker"
