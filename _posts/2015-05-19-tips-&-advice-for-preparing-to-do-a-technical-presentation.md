@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Scaling containers with docker compose - Part 2 of 3"
+title: "Creating a static site with docker-compose and sculpin"
 ---
 
 Aleseto delo hosonie coper, que rome toidi pote nevasio. Dones dio coniro avitu que alesteo, Aleseto delo comoniet coside, que rome toidi pote nevasio. Dones dio coniro avitu que alesteo Aleseto delo comoniet coside, que rome toidi pote nevasio. Dones dio coniro avitu que alesteo
