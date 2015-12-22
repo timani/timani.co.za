@@ -6,9 +6,9 @@ permalink: "blog/index.html"
 
 {% for post in site.posts limit:site.data.theme.num_home_posts %}
 <article class="h-entry">
-  <h5 class="post-title-home">
+  <h3 class="post-title-home">
     <a href="{{ post.url | prepend:site.base-url }}">{{ post.title }}</a>
-  </h5>
+  </h3>
   <p class="meta-section tags">
       Posted:
       <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>

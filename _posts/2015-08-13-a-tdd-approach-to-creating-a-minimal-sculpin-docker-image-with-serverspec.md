@@ -8,7 +8,7 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 <!--more-->
 
-##### Summary
+### Summary
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
@@ -37,14 +37,14 @@ This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec.
     * [Kitchen Test](#combo)
   * [Conclusion](#dependency)
 
-##### Overview
+### Overview
 
 Allow your teams to use their favorite Agile lifecycle tools while maintaining full visibility and control.
 Requirements
 
 - Test Driven Development for containers with serverspec
 
-##### Getting started  
+### Getting started  
 
 - what this section is about
 - why it matters
@@ -129,7 +129,7 @@ Here you can search for any topic that interests you, find information, images, 
 Table 1: Docker PHP requirements
 - takeaways
 
-##### Setup the Development environment
+##### Build the Development environment
 
 - what this section is about
 
@@ -171,13 +171,14 @@ Test Kitchen version 1.4.2
 
 - takeaways
 
-##### Create the `kitchen.yml`
+### Configure Test Kitchen
 
 - what this section is about
 
-The easiest way is to map out a table of the group or section that you will want to make sure is configured correctly. For example, in our case we will be looking at the Configuration of the container to make sure ruby is installed.
+The easiest way is to map out a table of the `kitchen.yml` or section that you will want to make sure is configured correctly. For example, in our case we will be looking at the Configuration of the container to make sure ruby is installed.
 
-<pre><code  data-language="yaml">---
+<pre><code  data-language="yaml"># kitchen.yml
+---
 driver:
   name: docker
 
@@ -190,7 +191,7 @@ platforms:
   - recipe[apt]
 </code></pre>
 
-###### Step 1: Drivers
+###### Drivers
 
 For example, in our case we will be looking at the Configuration. The easiest way is to map out a table of assignment.
 
@@ -198,7 +199,7 @@ For example, in our case we will be looking at the Configuration. The easiest wa
   name: docker
 </code></pre>
 
-###### Step 2: Provisioners
+###### Provisioners
 
 Tools used to converge an environment. During convergence the Configuration is run against a set of Platforms.
 
@@ -206,7 +207,7 @@ Tools used to converge an environment. During convergence the Configuration is r
   name: ansible_playbook
 </code></pre>
 
-###### Step 3: Platforms
+###### Platforms
 Using the same Serverspec and RSpec tests we already use for our Ansible scripts. Thanks for the heads up and keep up the great work ;-). Operating systems
 
 <pre><code  data-language="yaml">platforms:
@@ -216,12 +217,11 @@ Using the same Serverspec and RSpec tests we already use for our Ansible scripts
     platform: ubuntu
 </code></pre>
 
-###### Step 4: Test Suites
+###### Test Suites
 
 Using the same Serverspec and RSpec tests we already use for our Ansible scripts. Thanks for the heads up and keep up the great work ;-). Operating systems
 
-<pre><code  data-language="yaml">
-suites:
+<pre><code data-language="yaml">suites:
 - name: default
   run_list:
   ubuntu:
@@ -231,10 +231,112 @@ suites:
 - research or examples
 - takeaways
 
+<pre><code data-language="shell">$ kitchen list
+Instance             Driver   Provisioner  Last Action
+default-ubuntu-1204  Vagrant  ChefSolo     < Not Created>
+</code></pre>
 
-#### Initialize Serverspec and create the first outline of our tests.
+So what's this default-ubuntu-1204 thing and what's an "Instance"? A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as laid out in your .kitchen.yml file. Test Kitchen has auto-named your only instance by combining the Suite name ("default") and the Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname records, namely "default-ubuntu-1204"
 
-##### Step 1:Initialize Serverspec within the project
+
+### Development workflow
+
+The Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname records, namely "default-ubuntu-1204"
+
+
+##### Step 1:Create
+
+Okay, let's spin this Instance up to see what happens. Test Kitchen calls this the Create Action. We're going to be painfully explicit and ask Test Kitchen to only create the default-ubuntu-1204 instance:
+
+<pre><code  data-language="shell">#Create the default-ubuntu-1204 instance
+$ kitchen create default-ubuntu-1204
+
+$ kitchen list
+Instance             Driver   Provisioner  Last Action
+default-ubuntu-1204  Vagrant  ChefSolo     Created
+</code></pre>
+
+Test Kitchen has a login subcommand for just these kinds of situations:
+
+<pre><code  data-language="shell">
+$ kitchen login default-ubuntu-1204
+Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+Last login: Sat Nov 30 21:56:59 2013 from 10.0.2.2
+vagrant@default-ubuntu-1204:~$
+</code></pre>
+
+##### Step 2:Converge
+
+Now that we have some code, let's let Test Kitchen run it for us on our Ubuntu 12.04 instance:
+
+<pre><code  data-language="shell">
+$ kitchen converge default-ubuntu-1204
+-----> Starting Kitchen (v1.0.0)
+-----> Converging < default-ubuntu-1204 >...
+       Preparing files for transfer
+       Preparing current project directory as a cookbook
+       Removing non-cookbook files before transfer
+-----> Installing Chef Omnibus (true)
+       downloading https://www.opscode.com/chef/install.sh
+         to file /tmp/install.sh
+       trying wget...
+Downloading Chef  for ubuntu...
+Installing Chef
+Selecting previously unselected package chef.
+(Reading database ... 53291 files and directories currently installed.)
+Unpacking chef (from .../tmp.GUasmrcD/chef__amd64.deb) ...
+Setting up chef (11.8.0-1.ubuntu.12.04) ...
+Thank you for installing Chef!
+       Transfering files to < default-ubuntu-1204 >
+[2013-11-30T21:55:45+00:00] INFO: Forking chef instance to converge...
+Starting Chef Client, version 11.8.0
+[2013-11-30T21:55:45+00:00] INFO: *** Chef 11.8.0 ***
+[2013-11-30T21:55:45+00:00] INFO: Chef-client pid: 1162
+[2013-11-30T21:55:46+00:00] INFO: Setting the run_list to ["recipe[git::default]"] from JSON
+[2013-11-30T21:55:46+00:00] INFO: Run List is [recipe[git::default]]
+[2013-11-30T21:55:46+00:00] INFO: Run List expands to [git::default]
+[2013-11-30T21:55:46+00:00] INFO: Starting Chef Run for default-ubuntu-1204
+[2013-11-30T21:55:46+00:00] INFO: Running start handlers
+[2013-11-30T21:55:46+00:00] INFO: Start handlers complete.
+Compiling Cookbooks...
+Converging 2 resources
+Recipe: git::default
+  * package[git] action install[2013-11-30T21:55:46+00:00] INFO: Processing package[git] action install (git::default line 1)
+
+    - install version 1:1.7.9.5-1 of package git
+
+  * log[Well, that was too easy] action write[2013-11-30T21:56:14+00:00] INFO: Processing log[Well, that was too easy] action write (git::default line 3)
+[2013-11-30T21:56:14+00:00] INFO: Well, that was too easy
+
+
+[2013-11-30T21:56:14+00:00] INFO: Chef Run complete in 28.139177847 seconds
+[2013-11-30T21:56:14+00:00] INFO: Running report handlers
+[2013-11-30T21:56:14+00:00] INFO: Report handlers complete
+Chef Client finished, 2 resources updated
+       Finished converging < default-ubuntu-1204 > (1m3.91s).
+-----> Kitchen is finished. (1m4.22s)
+</code></pre>
+
+Converge will always exit with code 0 if my operation was successful.
+
+Let's check the status of our instance:
+<pre><code  data-language="shell">
+$ kitchen list
+Instance             Driver   Provisioner  Last Action
+default-ubuntu-1204  Vagrant  ChefSolo     Converged
+</code></pre>
+
+##### Step 3:Verify
+
+Excellent, 3 success messages just as we had hoped. The reason is because our docker image has met all of the dependencies based on the requirements
+
+### Initialize Serverspec
+
+and create the first outline of our tests.
+
+##### Step 1:Create Serverspec within the project
 
 <pre><code  data-language="shell">$ serverspec-init
 Select OS type:
@@ -293,8 +395,7 @@ end
 
 Updated project directory with the new infrastructure tests
 
-<pre><code  data-language="shell">
-├── .gitignore
+<pre><code  data-language="shell">├── .gitignore
 ├── .rspec
 ├── Gemfile
 ├── Rakefile
@@ -308,8 +409,7 @@ Updated project directory with the new infrastructure tests
 - research or examples
 
 Running the first serverspec tests
-<pre><code  data-language="shell">
-$ rspec spec/Dockerfile_spec.rb
+<pre><code  data-language="shell">$ rspec spec/Dockerfile_spec.rb
 1 example, 3 failures
 </code></pre>
 
@@ -325,8 +425,7 @@ Excellent, 3 failures messages just as we had hoped. The reason is because our d
 
 Create a Dockerfile and add it to the repository with the following contents. This will install ruby as well as bundler so we can add the gems for bootstrap and start working on the theme:
 
-<pre><code  data-language="shell">
-FROM centos:7
+<pre><code  data-language="shell">FROM centos:7
 MAINTAINER timani tunduwani
 
 # Install Remi Collet's repo for CentOS 7
