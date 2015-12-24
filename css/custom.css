@@ -22,13 +22,12 @@ a {
     text-transform: none;
     text-decoration: none;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-}
 h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
     color: #444;
     text-decoration: none;
-    font-weight: bold;
+}
+h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover, h6 a:hover {
+    color: #00bcd4;
 }
 p {
     font-size: 16px;
@@ -188,6 +187,7 @@ p {
 }
 .main-nav-container a.mdl-navigation__link{
     font-size: 18px;
+    font-weight: normal;
 }
 .mdl-layout__header .mdl-layout__drawer-button {
   color: #333;
@@ -206,4 +206,12 @@ p {
 .mdl-layout__drawer article {
   border-bottom: 1px solid #eee;
   padding: 10px 0;
+}
+.separator {
+    display: block;
+    content: '';
+    width: 10rem;
+    height: 1px;
+    margin: 3em auto;
+    background-color: #d4d4d4;
 }

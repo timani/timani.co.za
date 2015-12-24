@@ -30,11 +30,6 @@ This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec.
     * [Kitchen Converge](#local-files)
     * [Kichen Verify](#multiple-files)
     * [Kitchen Test](#combo)
-  * [Build Docker image](#tests)
-    * [Kitchen List](#local-files)
-    * [Kitchen Converge](#local-files)
-    * [Kichen Verify](#multiple-files)
-    * [Kitchen Test](#combo)
   * [Conclusion](#dependency)
 
 ### Overview
@@ -141,7 +136,8 @@ Once we have the requirements we can proceed to setup and configure test-kitchen
 
 ###### Step 1: Add Test Kitchen to a `Gemfile` within the project:
 
-<pre><code  data-language="ruby">source 'https://rubygems.org'
+<pre><code class="language-ruby">#Gemfile
+source 'https://rubygems.org'
 gem 'test-kitchen', '~> 1.0'
 gem 'docker'
 gem 'serverspec'
@@ -160,7 +156,7 @@ This will install `test-kitchen`, `kitchen-docker` and `kitchen-ansible` to prov
 
 ###### Step 2: Run the `bundle` command to install
 
-<pre><code  data-language="shell"># Install dependencies
+<pre><code class="language-bash"># Install dependencies
 $ bundle install
 # Verify Test Kitchen is installed, run the kitchen help command:
 $ bundle exec kitchen help
@@ -177,25 +173,26 @@ Test Kitchen version 1.4.2
 
 The easiest way is to map out a table of the `kitchen.yml` or section that you will want to make sure is configured correctly. For example, in our case we will be looking at the Configuration of the container to make sure ruby is installed.
 
-<pre><code  data-language="yaml"># kitchen.yml
+<pre><code class="language-yaml"># kitchen.yml
 ---
 driver:
   name: docker
-
+provisioner:
+  name: ansible_playbook
 platforms:
-- name: ubuntu
-  driver_config:
-    image: ubuntu:14.04
-    platform: ubuntu
-  run_list:
-  - recipe[apt]
+  - name: ubuntu-12.04
+suites:
+  - name: default
+    run_list:
+      - recipe[git::default]
+    attributes:
 </code></pre>
 
-###### Drivers
+**Drivers**
 
 For example, in our case we will be looking at the Configuration. The easiest way is to map out a table of assignment.
 
-<pre><code  data-language="yaml">driver:
+<pre><code class="language-yaml">driver:
   name: docker
 </code></pre>
 
@@ -203,14 +200,15 @@ For example, in our case we will be looking at the Configuration. The easiest wa
 
 Tools used to converge an environment. During convergence the Configuration is run against a set of Platforms.
 
-<pre><code  data-language="yaml">provisioner:
+<pre><code class="language-yaml">provisioner:
   name: ansible_playbook
 </code></pre>
 
 ###### Platforms
+
 Using the same Serverspec and RSpec tests we already use for our Ansible scripts. Thanks for the heads up and keep up the great work ;-). Operating systems
 
-<pre><code  data-language="yaml">platforms:
+<pre><code class="language-yaml">platforms:
 - name: ubuntu
   driver_config:
     image: ubuntu:14.04
@@ -221,7 +219,7 @@ Using the same Serverspec and RSpec tests we already use for our Ansible scripts
 
 Using the same Serverspec and RSpec tests we already use for our Ansible scripts. Thanks for the heads up and keep up the great work ;-). Operating systems
 
-<pre><code data-language="yaml">suites:
+<pre><code class="language-yaml">suites:
 - name: default
   run_list:
   ubuntu:
@@ -231,7 +229,7 @@ Using the same Serverspec and RSpec tests we already use for our Ansible scripts
 - research or examples
 - takeaways
 
-<pre><code data-language="shell">$ kitchen list
+<pre><code class="language-bash">$ kitchen list
 Instance             Driver   Provisioner  Last Action
 default-ubuntu-1204  Vagrant  ChefSolo     < Not Created>
 </code></pre>
@@ -248,7 +246,7 @@ The Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname
 
 Okay, let's spin this Instance up to see what happens. Test Kitchen calls this the Create Action. We're going to be painfully explicit and ask Test Kitchen to only create the default-ubuntu-1204 instance:
 
-<pre><code  data-language="shell">#Create the default-ubuntu-1204 instance
+<pre><code class="language-bash">#Create the default-ubuntu-1204 instance
 $ kitchen create default-ubuntu-1204
 
 $ kitchen list
@@ -258,7 +256,7 @@ default-ubuntu-1204  Vagrant  ChefSolo     Created
 
 Test Kitchen has a login subcommand for just these kinds of situations:
 
-<pre><code  data-language="shell">
+<pre><code class="language-bash"># Login to the default-ubuntu-1204 instance
 $ kitchen login default-ubuntu-1204
 Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.5.0-23-generic x86_64)
 
@@ -271,7 +269,7 @@ vagrant@default-ubuntu-1204:~$
 
 Now that we have some code, let's let Test Kitchen run it for us on our Ubuntu 12.04 instance:
 
-<pre><code  data-language="shell">
+<pre><code class="language-bash"># Update instance Configuration
 $ kitchen converge default-ubuntu-1204
 -----> Starting Kitchen (v1.0.0)
 -----> Converging < default-ubuntu-1204 >...
@@ -322,8 +320,7 @@ Chef Client finished, 2 resources updated
 Converge will always exit with code 0 if my operation was successful.
 
 Let's check the status of our instance:
-<pre><code  data-language="shell">
-$ kitchen list
+<pre><code class="language-bash">$ kitchen list
 Instance             Driver   Provisioner  Last Action
 default-ubuntu-1204  Vagrant  ChefSolo     Converged
 </code></pre>
@@ -338,7 +335,7 @@ and create the first outline of our tests.
 
 ##### Step 1:Create Serverspec within the project
 
-<pre><code  data-language="shell">$ serverspec-init
+<pre><code class="language-bash">$ serverspec-init
 Select OS type:
 
   1) UN*X
@@ -369,7 +366,7 @@ Input target host name: www.example.jp
 
 Based on the requirements we defined in the dependencies we can create the matching test suite
 
-<pre><code  data-language="ruby"># spec/Dockerfile_spec.rb
+<pre><code  class="language-ruby"># spec/Dockerfile_spec.rb
 
 require "serverspec"
 require "docker"
@@ -395,7 +392,7 @@ end
 
 Updated project directory with the new infrastructure tests
 
-<pre><code  data-language="shell">├── .gitignore
+<pre><code  class="language-bash">├── .gitignore
 ├── .rspec
 ├── Gemfile
 ├── Rakefile
@@ -409,7 +406,8 @@ Updated project directory with the new infrastructure tests
 - research or examples
 
 Running the first serverspec tests
-<pre><code  data-language="shell">$ rspec spec/Dockerfile_spec.rb
+
+<pre><code class="language-bash">$ rspec spec/Dockerfile_spec.rb
 1 example, 3 failures
 </code></pre>
 
@@ -425,7 +423,7 @@ Excellent, 3 failures messages just as we had hoped. The reason is because our d
 
 Create a Dockerfile and add it to the repository with the following contents. This will install ruby as well as bundler so we can add the gems for bootstrap and start working on the theme:
 
-<pre><code  data-language="shell">FROM centos:7
+<pre><code class="language-docker">FROM centos:7
 MAINTAINER timani tunduwani
 
 # Install Remi Collet's repo for CentOS 7
@@ -452,8 +450,7 @@ CMD bash /var/www/run.sh
 
 Updated project directory with the new Docker tests
 
-<pre><code  data-language="shell">
-├── .gitignore
+<pre><code class="language-bash">├── .gitignore
 ├── .rspec
 ├── Dockerfile
 ├── Gemfile
@@ -470,8 +467,7 @@ Updated project directory with the new Docker tests
 - research or examples
 
 Running the first serverspec tests
-<pre><code  data-language="shell">
-$ rspec spec/Dockerfile_spec.rb
+<pre><code  class="language-bash">$ rspec spec/Dockerfile_spec.rb
 1 example, 3 failures
 </code></pre>
 
