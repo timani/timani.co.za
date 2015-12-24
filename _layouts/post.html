@@ -1,50 +1,16 @@
 {% include head.html %}
-
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
-          {% include menu.html %}
+                    {% include nav.html %}
 <a href="#" target="_blank" id="view-source"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" data-upgraded=",MaterialButton,MaterialRipple">View Source<span class="mdl-button__ripple-container">
   <span class="mdl-ripple is-animating" ></span></span></a>
       <main  class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
           <div class="demo-content mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-              {% include nav.html %}
               <div class="demo-crumbs mdl-color-text--grey-500">
                 <a href="{{site.base-url}}" class="mdl-color-text--grey-500">Home</a> &raquo;
                 <a href="{{site.base-url}}/blog/index.html" class="mdl-color-text--grey-500">Blog</a> &raquo; {{ page.title }}
               </div>
-              <article class="h-entry">
-                <h3 class="entry-title">{{ page.title }}</h3>
-                <div class="e-content">
-                  <div>
-                    <div class="mdl-layout-">
-                      <p class="meta-section tags mdl-color-text--grey-800">
-                        Posted <a class="p-author h-card" style="border-bottom:dotted; border-color:#ccc; color:#aaa; display:none" href="#">W. Developer</a>  on
-                        <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
-                         <span class="hashtag-icon"> Categories: </span>
-                         <a class="" href="/community/tags/one-click-install-apps?type=tutorials">One-Click Install Apps</a>,
-                         <a class="" href="/community/tags/ghost?type=tutorials">Ghost</a>,
-                         <a class="" href="/community/tags/nginx?type=tutorials">Nginx</a>
-                      </p>
-                      </div>
-                    <!-- <div>
-                      <a href="#">
-                        <i class="fa fa-share-alt"></i>
-                      </a>
-                      <a href="#">
-                        <i class="fa fa-link"></i>
-                      </a>
-                      <a href="#">
-                        <i class="fa fa-twitter"></i>
-                      </a>
-                      <a href="#">
-                        <i class="fa fa-linkedin"></i>
-                      </a>
-                      <a href="#">
-                        <i class="fa fa-envelope-o"></i>
-                      </a>
-                    </div> -->
-                  </div>
-                </div>
+              <article class="h-entry"> 
                   {{ content }}
 
                   <div class="mdl-grid" style="

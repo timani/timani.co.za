@@ -50,6 +50,7 @@ Defining requirements
 
 Here you can search for any topic that interests you, find information, images, quotes, citations and more, and then quickly insert them into your document.
 
+<div style="overflow-x:auto;">
 <table class="mdl-data-table mdl-js-data-table" width="100%">
   <thead>
     <tr>
@@ -120,8 +121,10 @@ Here you can search for any topic that interests you, find information, images, 
     </tr>
   </tbody>
 </table>
-
+</div>
+<p class=" mdl-color-text--grey-500">
 Table 1: Docker PHP requirements
+</p>
 - takeaways
 
 ##### Build the Development environment
