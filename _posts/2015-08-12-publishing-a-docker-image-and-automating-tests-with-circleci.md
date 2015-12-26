@@ -31,6 +31,16 @@ Requirements
 
 ##### Publish and share the images
 
+###### Provisioners
+
+This tells Test Kitchen how to run Chef, to apply the code in our cookbook to the machine under test. The default and simplest approach is to use chef-solo, but other options are available, and ultimately Test Kitchen doesn't care how the infrastructure is built
+
+<pre><code class="language-yaml">provisioner:
+  name: ansible_playbook
+</code></pre>
+
+It could theoretically be with Puppet, Ansible, or Perl for all it cares.
+
 ##### Create a github repo
 Images will appear in the general search, as well as an image search. Narrow your search results to only images by selecting “Images”.
 

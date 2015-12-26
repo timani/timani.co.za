@@ -11,17 +11,17 @@ Almost everybody thinks cloud computing is new concept where as truth is the ide
     {% assign post_month_year = post.date | date: "%B %Y" %}
     {% assign newer_post_month_year = post.next.date | date: "%B %Y" %}
     {% if post_month_year != newer_post_month_year %}
-      <h3 class="section-header-archive">
+      <h5 class="section-header-archive">
         {{ post_month_year }}
-      </h3>
+      </h5>
     {% endif %}
     <article>
       <div>
         <a href="{{ post.url | prepend:site.baseurl}}" class="post-title-archive">{{ post.title }}</a>
       </div>
-      <div class="mdl-color-text--grey-800">
+      <p class="mdl-color-text--grey-800">
         Posted: {{ post.date | date_to_string }}  
-      </div>
+      </p>
       <br />
     </article>
 {% endfor %}

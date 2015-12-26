@@ -116,7 +116,65 @@ Here you can search for any topic that interests you, find information, images, 
 
 Table 1: Docker PHP requirements
 - takeaways
+##### Building the docker image
 
+- what this section is about
+- why it matters
+- research or examples
+
+Create a Dockerfile and add it to the repository with the following contents. This will install ruby as well as bundler so we can add the gems for bootstrap and start working on the theme:
+
+<pre><code class="language-docker">FROM centos:7
+MAINTAINER timani tunduwani
+
+# Install Remi Collet's repo for CentOS 7
+RUN yum -y install \
+  http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+# Install PHP and Percona (MySQL) client stuff and the latest stable PHP.
+RUN yum -y install --enablerepo=remi,remi-php56 \
+  httpd php php-gd php-xml php-zip pwgen psmisc tar git zip
+
+RUN yum -y update && yum clean all
+
+# Add Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Install Sculpin
+RUN curl -O https://download.sculpin.io/sculpin.phar; chmod +x sculpin.phar; mv sculpin.phar /usr/local/bin/sculpin
+# Expose the port for the sculpin server
+EXPOSE 8000
+# Move to the directory were the sculpin PHP files will be located
+WORKDIR /var/www
+COPY ./run.sh /var/www/
+CMD bash /var/www/run.sh
+</code></pre>
+
+Updated project directory with the new Docker tests
+
+<pre><code class="language-bash">├── .gitignore
+├── .rspec
+├── Dockerfile
+├── Gemfile
+├── Rakefile
+└── specs/
+</code></pre>
+
+- takeaways
+
+##### Build Docker image and run test -> `GREEN`
+
+- what this section is about
+- why it matters
+- research or examples
+
+Running the first serverspec tests
+<pre><code  class="language-bash">$ rspec spec/Dockerfile_spec.rb
+1 example, 3 failures
+</code></pre>
+
+Excellent, 3 success messages just as we had hoped. The reason is because our docker image has met all of the dependencies based on the requirements
+
+- takeaways
 
 Now with our updated.
 <pre><code  data-language="shell">

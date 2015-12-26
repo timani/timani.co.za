@@ -30,8 +30,6 @@ h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover, h6 a:hover {
     color: #00bcd4;
 }
 p {
-    font-size: 16px;
-    line-height: 26px;
 }
 #top-nav {
   height: auto;
@@ -64,7 +62,6 @@ p {
   width: calc(100% - 16px);
   margin: 0 auto;
 }
-
 .demo-content {
   border-radius: 0px;
   margin: 10px auto;
