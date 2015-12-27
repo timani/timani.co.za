@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Adding PHP libraries to the sculpin docker image - Part 2 of 4
+title: Adding PHP libraries to the sculpin docker image - Part 2 of 5
 Categories: Docker, TDD
 Next: 2015/08/12/publishing-a-docker-image-and-automating-tests-with-circleci/
 Prev: 2015/08/13/a-tdd-approach-to-creating-a-minimal-sculpin-docker-image-with-serverspec/

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A TDD approach to creating a minimal Sculpin Docker image with Serverspec - Part 1 of 4
+title: A TDD approach to creating a minimal Sculpin Docker image with Serverspec - Part 1 of 5
 categories: Docker, TDD
 ---
 
@@ -72,26 +72,16 @@ Here you can search for any topic that interests you, find information, images, 
 </button>
 </td>
     </tr>
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric" >git</td>
-      <td class="mdl-data-table__cell--non-numeric" >package</td>
-      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
-      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
-      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
-  <i class="material-icons">close</i>
-</button>
-</td>
-    </tr>
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric" >tar</td>
-      <td class="mdl-data-table__cell--non-numeric" >package</td>
-      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
-      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
-      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
-  <i class="material-icons">close</i>
-</button>
-</td>
-    </tr>
+      <tr>
+        <td class="mdl-data-table__cell--non-numeric">vim</td>
+        <td class="mdl-data-table__cell--non-numeric">package</td>
+        <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+        <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+        <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
+    <i class="material-icons">close</i>
+  </button>
+  </td>
+      </tr>
     <tr>
       <td class="mdl-data-table__cell--non-numeric" >zip</td>
       <td class="mdl-data-table__cell--non-numeric" >package</td>
@@ -107,26 +97,6 @@ Here you can search for any topic that interests you, find information, images, 
       <td class="mdl-data-table__cell--non-numeric" >file</td>
       <td class="mdl-data-table__cell--non-numeric" >Should be</td>
       <td class="mdl-data-table__cell--non-numeric" ><code>Alpine Linux</code></td>
-      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
-  <i class="material-icons">close</i>
-</button>
-</td>
-    </tr>
-    <tr>  
-      <td class="mdl-data-table__cell--non-numeric" >composer</td>
-      <td class="mdl-data-table__cell--non-numeric" >command</td>
-      <td class="mdl-data-table__cell--non-numeric" >Should match</td>
-      <td class="mdl-data-table__cell--non-numeric" ><code>/usr/local/bin/composer</code></td>
-      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
-  <i class="material-icons">close</i>
-</button>
-</td>
-    </tr>
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric" >sculpin</td>
-      <td class="mdl-data-table__cell--non-numeric" >command</td>
-      <td class="mdl-data-table__cell--non-numeric" >Should match</td>
-      <td class="mdl-data-table__cell--non-numeric" ><code>/usr/local/bin/sculpin</code></td>
       <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
   <i class="material-icons">close</i>
 </button>
@@ -301,6 +271,185 @@ So what's this default-ubuntu-1204 thing and what's an "Instance"? A Test Kitche
 - `Last Action`: To validate the images we will use serverspec.
 
 Test Kitchen has auto-named your only instance by combining the Suite name ("default") and the Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname records, namely "default-ubuntu-1204"
+
+##### Building test suites with Serverspec
+
+and create the first outline of our tests.
+
+###### Step 1: Create Serverspec within the project
+
+<pre><code class="language-bash">$ serverspec-init
+Select OS type:
+
+  1) UN*X
+  2) Windows
+
+Select number: 1
+
+Select a backend type:
+
+  1) SSH
+  2) Exec (local)
+
+Select number: 1
+
+Vagrant instance y/n: n
+Input target host name: www.example.jp
+ + spec/
+ + spec/www.example.jp/
+ + spec/www.example.jp/sample_spec.rb
+ + spec/spec_helper.rb
+ + Rakefile
+ + .rspec
+</code></pre>
+
+- takeaways
+
+
+###### Step 2: Create default test suite
+
+Based on the requirements we defined in the dependencies we can create the matching test suite
+
+<pre><code  class="language-ruby"># spec/Dockerfile_spec.rb
+
+require "serverspec"
+require "docker"
+
+describe "Dockerfile" do
+  before(:all) do
+    image = Docker::Image.build_from_dir('.')
+
+    set :os, family: :debian
+    set :backend, :docker
+    set :docker_image, image.id
+  end
+
+  it "installs the right version of Ubuntu" do
+    expect(os_version).to include("Ubuntu 14")
+  end
+
+  def os_version
+    command("lsb_release -a").stdout
+  end
+end
+</code></pre>
+
+Updated project directory with the new infrastructure tests
+
+<pre><code  class="language-bash">├── .gitignore
+├── .rspec
+├── Gemfile
+├── Rakefile
+└── specs/
+</code></pre>
+
+###### Step 3: Run test suite
+
+ A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as laid out in your .kitchen.yml file.
+
+<pre><code class="language-bash">$ kitchen test default-ubuntu-1204
+-----> Starting Kitchen (v1.0.0)
+-----> Cleaning up any prior instances of < default-ubuntu-1204>
+-----> Destroying < default-ubuntu-1204>...
+       [default] Forcing shutdown of VM...
+       [default] Destroying VM and associated drives...
+       Vagrant instance < default-ubuntu-1204> destroyed.
+       Finished destroying < default-ubuntu-1204> (0m3.06s).
+-----> Testing < default-ubuntu-1204>
+-----> Creating < default-ubuntu-1204>...
+       Bringing machine 'default' up with 'virtualbox' provider...
+       [default] Importing base box 'opscode-ubuntu-12.04'...
+       [default] Matching MAC address for NAT networking...
+       [default] Setting the name of the VM...
+       [default] Clearing any previously set forwarded ports...
+       [default] Creating shared folders metadata...
+       [default] Clearing any previously set network interfaces...
+       [default] Preparing network interfaces based on configuration...
+       [default] Forwarding ports...
+       [default] -- 22 => 2222 (adapter 1)
+       [default] Running 'pre-boot' VM customizations...
+       [default] Booting VM...
+       [default] Waiting for machine to boot. This may take a few minutes...
+[default] Machine booted and ready!       [default] Setting hostname...
+       [default] Mounting shared folders...
+       Vagrant instance < default-ubuntu-1204> created.
+       Finished creating < default-ubuntu-1204> (0m46.22s).
+-----> Converging < default-ubuntu-1204>...
+       Preparing files for transfer
+       Preparing current project directory as a cookbook
+       Removing non-cookbook files before transfer
+-----> Installing Chef Omnibus (true)
+       downloading https://www.opscode.com/chef/install.sh
+         to file /tmp/install.sh
+       trying wget...
+Downloading Chef  for ubuntu...
+Installing Chef
+Selecting previously unselected package chef.
+(Reading database ... 53291 files and directories currently installed.)
+Unpacking chef (from .../tmp.CLdJIw55/chef__amd64.deb) ...
+Setting up chef (11.8.0-1.ubuntu.12.04) ...
+Thank you for installing Chef!
+       Transfering files to < default-ubuntu-1204>
+[2013-11-30T22:10:59+00:00] INFO: Forking chef instance to converge...
+Starting Chef Client, version 11.8.0
+[2013-11-30T22:10:59+00:00] INFO: *** Chef 11.8.0 ***
+[2013-11-30T22:10:59+00:00] INFO: Chef-client pid: 1192
+[2013-11-30T22:10:59+00:00] INFO: Setting the run_list to ["recipe[git::default]"] from JSON
+[2013-11-30T22:10:59+00:00] INFO: Run List is [recipe[git::default]]
+[2013-11-30T22:10:59+00:00] INFO: Run List expands to [git::default]
+[2013-11-30T22:10:59+00:00] INFO: Starting Chef Run for default-ubuntu-1204
+[2013-11-30T22:10:59+00:00] INFO: Running start handlers
+[2013-11-30T22:10:59+00:00] INFO: Start handlers complete.
+Compiling Cookbooks...
+Converging 2 resources
+Recipe: git::default
+  * package[git] action install[2013-11-30T22:10:59+00:00] INFO: Processing package[git] action install (git::default line 1)
+
+    - install version 1:1.7.9.5-1 of package git
+
+  * log[Well, that was too easy] action write[2013-11-30T22:11:24+00:00] INFO: Processing log[Well, that was too easy] action write (git::default line 3)
+[2013-11-30T22:11:24+00:00] INFO: Well, that was too easy
+
+
+[2013-11-30T22:11:24+00:00] INFO: Chef Run complete in 24.365178204 seconds
+[2013-11-30T22:11:24+00:00] INFO: Running report handlers
+[2013-11-30T22:11:24+00:00] INFO: Report handlers complete
+Chef Client finished, 2 resources updated
+       Finished converging < default-ubuntu-1204> (0m45.17s).
+-----> Setting up < default-ubuntu-1204>...
+Fetching: thor-0.18.1.gem (100%)
+Fetching: busser-0.6.0.gem (100%)
+Successfully installed thor-0.18.1
+Successfully installed busser-0.6.0
+2 gems installed
+-----> Setting up Busser
+       Creating BUSSER_ROOT in /tmp/busser
+       Creating busser binstub
+       Plugin bats installed (version 0.1.0)
+-----> Running postinstall for bats plugin
+      create  /tmp/bats20131130-4164-uxjzr4/bats
+      create  /tmp/bats20131130-4164-uxjzr4/bats.tar.gz
+Installed Bats to /tmp/busser/vendor/bats/bin/bats
+      remove  /tmp/bats20131130-4164-uxjzr4
+       Finished setting up < default-ubuntu-1204> (0m4.89s).
+-----> Verifying < default-ubuntu-1204>...
+       Suite path directory /tmp/busser/suites does not exist, skipping.
+Uploading /tmp/busser/suites/bats/git_installed.bats (mode=0644)
+-----> Running bats test suite
+ ✓ git binary is found in PATH
+
+       1 test, 0 failures
+
+       Finished verifying < default-ubuntu-1204> (0m0.98s).
+-----> Destroying < default-ubuntu-1204>...
+       [default] Forcing shutdown of VM...
+       [default] Destroying VM and associated drives...
+       Vagrant instance < default-ubuntu-1204> destroyed.
+       Finished destroying < default-ubuntu-1204> (0m3.48s).
+       Finished testing < default-ubuntu-1204> (1m43.82s).
+-----> Kitchen is finished. (1m44.11s)
+</code></pre>
+
 
 ##### Development workflow
 
@@ -532,91 +681,67 @@ Uploading /tmp/busser/suites/bats/git_installed.bats (mode=0644)
 -----> Kitchen is finished. (0m5.45s)
 $ echo $?</code></pre>
 
-##### Initialize Serverspec
-
-and create the first outline of our tests.
-
-###### Step 1: Create Serverspec within the project
-
-<pre><code class="language-bash">$ serverspec-init
-Select OS type:
-
-  1) UN*X
-  2) Windows
-
-Select number: 1
-
-Select a backend type:
-
-  1) SSH
-  2) Exec (local)
-
-Select number: 1
-
-Vagrant instance y/n: n
-Input target host name: www.example.jp
- + spec/
- + spec/www.example.jp/
- + spec/www.example.jp/sample_spec.rb
- + spec/spec_helper.rb
- + Rakefile
- + .rspec
-</code></pre>
-
-- takeaways
-
-###### Step 2: Create Serverpec tests
-
-Based on the requirements we defined in the dependencies we can create the matching test suite
-
-<pre><code  class="language-ruby"># spec/Dockerfile_spec.rb
-
-require "serverspec"
-require "docker"
-
-describe "Dockerfile" do
-  before(:all) do
-    image = Docker::Image.build_from_dir('.')
-
-    set :os, family: :debian
-    set :backend, :docker
-    set :docker_image, image.id
-  end
-
-  it "installs the right version of Ubuntu" do
-    expect(os_version).to include("Ubuntu 14")
-  end
-
-  def os_version
-    command("lsb_release -a").stdout
-  end
-end
-</code></pre>
-
-Updated project directory with the new infrastructure tests
-
-<pre><code  class="language-bash">├── .gitignore
-├── .rspec
-├── Gemfile
-├── Rakefile
-└── specs/
-</code></pre>
-
-##### Run initial tests -> `RED`
-
-- what this section is about
-- why it matters
-- research or examples
-
-Running the first serverspec tests
-
-<pre><code class="language-bash">$ rspec spec/Dockerfile_spec.rb
-1 example, 3 failures
-</code></pre>
-
 Excellent, 3 failures messages just as we had hoped. The reason is because our docker image has not been created yet and does not meet the requirements.
 
 - takeaways
+
+Here you can search for any topic that interests you, find information, images, quotes, citations and more, and then quickly insert them into your document.
+
+<div style="overflow-x:auto;">
+<table class="mdl-data-table mdl-js-data-table" width="100%">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric" >Component</th>
+      <th class="mdl-data-table__cell--non-numeric" >Type</th>
+      <th class="mdl-data-table__cell--non-numeric" >Condition</th>
+      <th class="mdl-data-table__cell--non-numeric" >Criteria</th>
+      <th class="mdl-data-table__cell--non-numeric" >Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">fcgi</td>
+      <td class="mdl-data-table__cell--non-numeric">package</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">check</i>
+</button>
+</td>
+    </tr>
+      <tr>
+        <td class="mdl-data-table__cell--non-numeric">vim</td>
+        <td class="mdl-data-table__cell--non-numeric">package</td>
+        <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+        <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+        <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
+    <i class="material-icons">check</i>
+  </button>
+  </td>
+      </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric" >zip</td>
+      <td class="mdl-data-table__cell--non-numeric" >package</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" >Installed</td>
+      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">check</i>
+</button>
+</td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">Tag</td>
+      <td class="mdl-data-table__cell--non-numeric" >file</td>
+      <td class="mdl-data-table__cell--non-numeric" >Should be</td>
+      <td class="mdl-data-table__cell--non-numeric" ><code>Alpine Linux</code></td>
+      <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">check</i>
+</button>
+</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ##### Conclusion
 
