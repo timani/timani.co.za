@@ -1,0 +1,19 @@
+<div class="mdl-layout__header-row" id="top-nav">
+  {% assign current = page.url | downcase | split: '/' %}
+
+  <div class="mdl-layout__tab-bar-container mdl-color--grey-100">
+    <div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-left-button">
+      <i class="material-icons">menu</i>
+    </div>
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--grey-100 mdl-js-ripple-effect--ignore-events">
+      {% for menu in site.data.menu %}
+        <a href="{{ site.base-url }}{{ menu.url }}"  class="mdl-layout__tab {% if page.url == menu.url %} is-active {% endif %}">
+          {{ menu.name }}
+        </a>
+    {% endfor %}
+      </div>
+      <div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-right-button">
+        <i class="material-icons">chevron_right</i>
+      </div>
+    </div>
+</div>

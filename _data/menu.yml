@@ -1,0 +1,14 @@
+- name: Home
+  url: /
+
+- name: Blog
+  url: /blog/index.html
+
+- name: Archives
+  url: /archives/index.html
+
+- name: About
+  url: /about/index.html
+
+- name: Contact
+  url: /contact/index.html

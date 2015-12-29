@@ -1,40 +1,16 @@
 <div class="mdl-layout__header-row" id="top-nav" style="display: block;text-align: center;">
+  {% assign current = page.url | downcase | split:'/' | first  %}
 
   <div class="mdl-layout__tab-bar-container mdl-color--grey-100">
     <div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-left-button">
       <i class="material-icons">menu</i>
     </div>
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--grey-100 mdl-js-ripple-effect--ignore-events">
-      <a href="{{ site.base-url }}/index.html" class="mdl-layout__tab is-active">
-        Home
-        <span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect">
-          <span class="mdl-ripple"></span>
-        </span>
-      </a>
-      <a href="{{ site.base-url }}/blog/index.html" class="mdl-layout__tab">
-        Blog
-        <span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect">
-          <span class="mdl-ripple"></span>
-        </span>
-      </a>
-      <a href="{{ site.base-url }}/archives/index.html" class="mdl-layout__tab">
-        Archives
-        <span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect" >
-          <span class="mdl-ripple"></span>
-        </span>
-      </a>
-      <a href="{{ site.base-url }}/about/index.html" class="mdl-layout__tab">
-        About
-        <span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect">
-          <span class="mdl-ripple"></span>
-        </span>
-      </a>
-      <a href="{{ site.base-url }}/contact/index.html" class="mdl-layout__tab">
-        Contact
-        <span class="mdl-layout__tab-ripple-container mdl-js-ripple-effect">
-          <span class="mdl-ripple"></span>
-        </span>
-      </a>
+      {% for menu in site.data.menu %}
+        <a href="{{ site.base-url }}{{ menu.url }}"  class="mdl-layout__tab {% if page.url == menu.url %} is-active {% endif %}">
+          {{ menu.name }} 
+        </a>
+    {% endfor %}
       </div>
       <div class="mdl-layout__tab-bar-button mdl-layout__tab-bar-right-button">
         <i class="material-icons">chevron_right</i>
