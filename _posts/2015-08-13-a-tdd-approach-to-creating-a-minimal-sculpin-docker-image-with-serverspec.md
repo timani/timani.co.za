@@ -89,7 +89,7 @@ Here you can search for any topic that interests you, find information, images, 
 </td>
     </tr>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric">Tag</td> 
+      <td class="mdl-data-table__cell--non-numeric">Tag</td>
       <td class="mdl-data-table__cell--non-numeric" >Should be</td>
       <td class="mdl-data-table__cell--non-numeric" ><code>Alpine Linux</code></td>
       <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
@@ -687,7 +687,6 @@ Here you can search for any topic that interests you, find information, images, 
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric" >Component</th>
-      <th class="mdl-data-table__cell--non-numeric" >Type</th>
       <th class="mdl-data-table__cell--non-numeric" >Condition</th>
       <th class="mdl-data-table__cell--non-numeric" >Criteria</th>
       <th class="mdl-data-table__cell--non-numeric" >Status</th>
@@ -696,7 +695,6 @@ Here you can search for any topic that interests you, find information, images, 
   <tbody>
     <tr>
       <td class="mdl-data-table__cell--non-numeric">fcgi</td>
-      <td class="mdl-data-table__cell--non-numeric">package</td>
       <td class="mdl-data-table__cell--non-numeric" >Should be</td>
       <td class="mdl-data-table__cell--non-numeric" >Installed</td>
       <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
@@ -706,7 +704,6 @@ Here you can search for any topic that interests you, find information, images, 
     </tr>
       <tr>
         <td class="mdl-data-table__cell--non-numeric">vim</td>
-        <td class="mdl-data-table__cell--non-numeric">package</td>
         <td class="mdl-data-table__cell--non-numeric" >Should be</td>
         <td class="mdl-data-table__cell--non-numeric" >Installed</td>
         <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
@@ -716,7 +713,6 @@ Here you can search for any topic that interests you, find information, images, 
       </tr>
     <tr>
       <td class="mdl-data-table__cell--non-numeric" >zip</td>
-      <td class="mdl-data-table__cell--non-numeric" >package</td>
       <td class="mdl-data-table__cell--non-numeric" >Should be</td>
       <td class="mdl-data-table__cell--non-numeric" >Installed</td>
       <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
@@ -725,8 +721,7 @@ Here you can search for any topic that interests you, find information, images, 
 </td>
     </tr>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric">Tag</td>
-      <td class="mdl-data-table__cell--non-numeric" >file</td>
+      <td class="mdl-data-table__cell--non-numeric">Tag</td> 
       <td class="mdl-data-table__cell--non-numeric" >Should be</td>
       <td class="mdl-data-table__cell--non-numeric" ><code>Alpine Linux</code></td>
       <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
