@@ -235,5 +235,6 @@ a.mdl-layout__tab:hover {
   @media screen and (max-width: 1024px) {
   .mdl-layout__tab-bar-button {
       display: inline;
+      margin-left: 0px;
   }
 }
