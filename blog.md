@@ -15,7 +15,7 @@ permalink: "blog/index.html"
     </p>
   <div class="p-summary">
     {{ post.excerpt }}
-      <a href="{{ "/archive" | prepend:site.baseurl }}" class="btn btn-primary btn-block btn-lg"> Read More &raquo;</a>
+      <a href="{{ post.url | prepend:site.base-url }}" class="btn btn-primary btn-block btn-lg"> Read More &raquo;</a>
   </div>
   </article>
 <div class="separator"></div>

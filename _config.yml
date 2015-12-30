@@ -78,3 +78,6 @@ kramdown:
     coderay_css: style
 
 exclude: ['config.rb', 'Gemfile.lock']
+
+git:
+  branch: gh-pages

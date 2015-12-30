@@ -198,6 +198,7 @@ task :deploy, :message do |t, args|
     raise "Please add a branch."
   else
     Rake::Task[:build].invoke
+    execute("jekyll build")
     execute("git add .")
     execute("git commit -m \"#{message}\"")
     execute("git push origin #{branch}")
