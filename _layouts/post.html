@@ -2,7 +2,8 @@
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
                     {% include nav.html %}
 
-<a href="#" target="_blank" id="view-source"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" data-upgraded=",MaterialButton,MaterialRipple">View Source<span class="mdl-button__ripple-container">
+<a href="#top-nav" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast"
+>Scroll to top<span class="mdl-button__ripple-container">
   <span class="mdl-ripple is-animating" ></span></span></a>
       <main  class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
@@ -17,10 +18,9 @@
               <h3 class="entry-title">{{ page.title }}</h3>
                 <p class="meta-section">
                   <i class="fa fa-clock-o"></i>
-  Posted on: <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
+                    Posted on: <time class="dt-published" datetime="{{ page.date | date: "%-d %B %Y" }}"><span class="post-date">{{ page.date | date: "%-d %B %Y" }}</span></time>
                 </p>
                   {{ content }}
-
                   <div class="mdl-grid" style="border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;">
                   <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">
                     <div class="" style="">

@@ -39,9 +39,17 @@ p {
   padding: 0;
 }
 li code, p code {
+    color: #07a;
     padding: 2px 4px;
     font-size: 85%;
     background: #efefef;
+}
+.home-hero {
+  text-align: center;
+}
+hr.separator {
+    margin: 1em auto;
+    width: 85%;
 }
 .demo-ribbon {
   width: 100%;
@@ -193,11 +201,17 @@ a.mdl-layout__tab:hover {
     font-size: 18px;
     font-weight: normal;
 }
-
+.fa.fa-rss {
+    color: orange;
+    padding: 17px;
+    font-size: 22px;
+    font-weight: normal;
+}
 .mdl-layout__tab-bar-button .material-icons,
 .mdl-layout__tab,
 .mdl-layout.is-upgraded .mdl-layout__tab.is-active {
   color: #333;
+  text-transform: none;
 }
 .mdl-layout__tab-bar {
   height: auto;

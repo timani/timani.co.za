@@ -12,7 +12,7 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
 
-###### Table of contents
+####### Table of contents
 
   * [Overview](#gh-md-toc)
     * [TDD](#local-files)
@@ -105,7 +105,7 @@ Table 1: Docker PHP requirements
 </p>
 - takeaways
 
-##### Build the Development environment
+###### Build the Development environment
 
 - what this section is about
 
@@ -115,11 +115,12 @@ Once we have the requirements we can proceed to setup and configure test-kitchen
 
 - research or examples
 
-###### Step 1: Add Test Kitchen to a `Gemfile` within the project:
+####### Add Test Kitchen to a `Gemfile` within the project:
 
 <pre><code class="language-ruby">#Gemfile
 source 'https://rubygems.org'
 gem 'test-kitchen', '~> 1.0'
+gem 'kitchen-ansible', '~> 1.0'
 gem 'docker'
 gem 'serverspec'
 
@@ -133,8 +134,9 @@ This will install `test-kitchen`, `kitchen-docker` and `kitchen-ansible` to prov
 - `docker`: A "Test Kitchen driver" - it tells test-kitchen how to interact with an appliance (machine), such as Vagrant, EC2, Rackspace, etc.
 - `serverspec`: To validate the images we will use serverspec.
 - `kitchen-docker`: A "Test Kitchen driver" - it tells test-kitchen how to interact with an appliance (machine), such as Vagrant, EC2, Rackspace, etc.
+- `kitchen-ansible`: Test Kitchen uses chef as the default provisioner during converge. Rather than use chef, we will be using ansible as the provisioner for this project.
 
-###### Step 2: Run the `bundle` command to install
+####### Install project dependencies
 
 Install the dependencies for the project in the Gemfile we created earlier. If everything goes correctly, we should be able to get list the installed version Test Kitchen.
 
@@ -149,7 +151,7 @@ Test Kitchen version 1.4.2
 
 - takeaways
 
-##### Initialize a kitchen project
+###### Initialize a kitchen project
 
 Create a kitchen project using the Docker driver and Ansible as the provisioner.
 
@@ -164,7 +166,7 @@ kitchen init --driver=docker --provisioner=ansible_playbook
 
 The
 
-##### Configure Test Kitchen
+###### Configure Test Kitchen
 
 - what this section is about
 
@@ -185,21 +187,19 @@ suites:
     attributes:
 </code></pre>
 
-###### Drivers
+Test Kitchen has auto-named your only instance by combining the Suite name (“default”) and the Platform name (“ubuntu-12.04”) into a form that is safe for DNS and hostname records, namely “default-ubuntu-1204”
 
-Cloud providers like EC2, Digital Ocean, Rackspace, Azure and in our case Google Compute Engine. In a later post we will see how we can verify that our infrastructure runs as expected on in the environment it will reside.
+**Drivers:** Cloud providers like EC2, Digital Ocean, Rackspace, Azure and in our case Google Compute Engine. In a later post we will see how we can verify that our infrastructure runs as expected on in the environment it will reside.
 
 This way you can anticipate any potential caveats, exception handling or patches that need to be applied prior to release in production.
-
-Test Kitchen also support Virtualization drivers like Vagrant, Docker, LXC and VMWare among others. For this tutorial the driver can is set to docker.
 
 <pre><code class="language-yaml">driver:
   name: docker
 </code></pre>
 
-###### Provisioners
+Test Kitchen also support Virtualization drivers like Vagrant, Docker, LXC and VMWare among others. For this tutorial the driver can is set to docker.
 
-This tells Test Kitchen how to run Chef, to apply the code in our cookbook to the machine under test. The default and simplest approach is to use chef-solo, but other options are available, and ultimately Test Kitchen doesn't care how the infrastructure is built
+**Provisioners:** This tells Test Kitchen how to run Chef, to apply the code in our cookbook to the machine under test. The default and simplest approach is to use chef-solo, but other options are available, and ultimately Test Kitchen doesn't care how the infrastructure is built
 
 <pre><code class="language-yaml">provisioner:
   name: ansible_playbook
@@ -207,26 +207,7 @@ This tells Test Kitchen how to run Chef, to apply the code in our cookbook to th
 
 It could theoretically be with Puppet, Ansible, or Perl for all it cares.
 
-**Creating an Ansible playbook**
-
-<pre><code class="language-yaml">---
-# provision.yml
-- hosts: docker
-- sudo: true
-- user: root
-
-  tasks:
-    - name: Build Alpine linux image
-      local_action:
-          module: docker_image
-          path: .
-          name: sculpin
-          state: present
-</code></pre>
-
-###### Platforms
-
- This is a list of operation systems on which we want to run our code. Note that the operating system's version, architecture, cloud environment, etc. might be relevant to what Test Kitchen considers a Platform.
+**Platforms:** This is a list of operation systems on which we want to run our code. Note that the operating system's version, architecture, cloud environment, etc. might be relevant to what Test Kitchen considers a Platform.
 
 <pre><code class="language-yaml">platforms:
 - name: alpine
@@ -234,9 +215,7 @@ It could theoretically be with Puppet, Ansible, or Perl for all it cares.
 
 We want to keep our containers as lean as possible and Alpine Linux is a great distribution that is lightweight and easy to use. The main benefit is the docker image is only 5 MB so it slim and has fair number of packages available.
 
-###### Suites
-
-This section defines what we want to test. It includes the Chef run-list and any node attribute setups that we want run on each Platform above. For example, we might want to test the MySQL client cookbook code separately from the server cookbook code for maximum isolation.
+**Suites:** This section defines what we want to test. It includes the Chef run-list and any node attribute setups that we want run on each Platform above. For example, we might want to test the MySQL client cookbook code separately from the server cookbook code for maximum isolation.
 
 <pre><code class="language-yaml">suites:
 - name: default
@@ -267,11 +246,30 @@ So what's this default-ubuntu-1204 thing and what's an "Instance"? A Test Kitche
 
 Test Kitchen has auto-named your only instance by combining the Suite name ("default") and the Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname records, namely "default-ubuntu-1204"
 
-##### Building test suites with Serverspec
+###### Creating an Ansible playbook
+
+A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as laid out in your .kitchen.yml file.
+
+<pre><code class="language-yaml">---
+# provision.yml
+- hosts: docker
+- sudo: true
+- user: root
+
+  tasks:
+    - name: Build Alpine linux image
+      local_action:
+          module: docker_image
+          path: .
+          name: sculpin
+          state: present
+</code></pre>
+
+#### Building test suites with Serverspec
 
 and create the first outline of our tests.
 
-###### Step 1: Create Serverspec within the project
+####### Create Serverspec within the project
 
 <pre><code class="language-bash">$ serverspec-init
 Select OS type:
@@ -301,7 +299,7 @@ Input target host name: www.example.jp
 - takeaways
 
 
-###### Step 2: Create default test suite
+####### Create default test suite
 
 Based on the requirements we defined in the dependencies we can create the matching test suite
 
@@ -338,7 +336,7 @@ Updated project directory with the new infrastructure tests
 └── specs/
 </code></pre>
 
-###### Step 3: Run test suite
+####### Run initial test suite
 
  A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as laid out in your .kitchen.yml file.
 
@@ -446,13 +444,13 @@ Uploading /tmp/busser/suites/bats/git_installed.bats (mode=0644)
 </code></pre>
 
 
-##### Development workflow
+#### Development workflow
 
 The Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname records, namely "default-ubuntu-1204"
 
 < IMAGE OF FLOW >
 
-###### Step 1:Create
+####### kitchen create
 
 Okay, let's spin this Instance up to see what happens. Test Kitchen calls this the Create Action. We're going to be painfully explicit and ask Test Kitchen to only create the default-ubuntu-1204 instance:
 
@@ -475,7 +473,7 @@ Last login: Sat Nov 30 21:56:59 2013 from 10.0.2.2
 vagrant@default-ubuntu-1204:~$
 </code></pre>
 
-###### Step 2:Converge
+####### kitchen converge
 
 Now that we have some code, let's let Test Kitchen run it for us on our Ubuntu 12.04 instance:
 
@@ -536,114 +534,7 @@ Instance             Driver   Provisioner  Last Action
 default-ubuntu-1204  Vagrant  ChefSolo     Converged
 </code></pre>
 
-###### Step 3: Kitchen Test
-
-Now it's time to introduce to the test meta-action which helps you automate all the previous actions so far into one command. Recall that we currently have our instance in a "verified" state. With this in mind, let's run kitchen test:
-
-<pre><code class="language-bash">$ kitchen test default-ubuntu-1204
------> Starting Kitchen (v1.0.0)
------> Cleaning up any prior instances of < default-ubuntu-1204>
------> Destroying < default-ubuntu-1204>...
-       [default] Forcing shutdown of VM...
-       [default] Destroying VM and associated drives...
-       Vagrant instance < default-ubuntu-1204> destroyed.
-       Finished destroying < default-ubuntu-1204> (0m3.06s).
------> Testing < default-ubuntu-1204>
------> Creating < default-ubuntu-1204>...
-       Bringing machine 'default' up with 'virtualbox' provider...
-       [default] Importing base box 'opscode-ubuntu-12.04'...
-       [default] Matching MAC address for NAT networking...
-       [default] Setting the name of the VM...
-       [default] Clearing any previously set forwarded ports...
-       [default] Creating shared folders metadata...
-       [default] Clearing any previously set network interfaces...
-       [default] Preparing network interfaces based on configuration...
-       [default] Forwarding ports...
-       [default] -- 22 => 2222 (adapter 1)
-       [default] Running 'pre-boot' VM customizations...
-       [default] Booting VM...
-       [default] Waiting for machine to boot. This may take a few minutes...
-[default] Machine booted and ready!       [default] Setting hostname...
-       [default] Mounting shared folders...
-       Vagrant instance < default-ubuntu-1204> created.
-       Finished creating < default-ubuntu-1204> (0m46.22s).
------> Converging < default-ubuntu-1204>...
-       Preparing files for transfer
-       Preparing current project directory as a cookbook
-       Removing non-cookbook files before transfer
------> Installing Chef Omnibus (true)
-       downloading https://www.opscode.com/chef/install.sh
-         to file /tmp/install.sh
-       trying wget...
-Downloading Chef  for ubuntu...
-Installing Chef
-Selecting previously unselected package chef.
-(Reading database ... 53291 files and directories currently installed.)
-Unpacking chef (from .../tmp.CLdJIw55/chef__amd64.deb) ...
-Setting up chef (11.8.0-1.ubuntu.12.04) ...
-Thank you for installing Chef!
-       Transfering files to < default-ubuntu-1204>
-[2013-11-30T22:10:59+00:00] INFO: Forking chef instance to converge...
-Starting Chef Client, version 11.8.0
-[2013-11-30T22:10:59+00:00] INFO: *** Chef 11.8.0 ***
-[2013-11-30T22:10:59+00:00] INFO: Chef-client pid: 1192
-[2013-11-30T22:10:59+00:00] INFO: Setting the run_list to ["recipe[git::default]"] from JSON
-[2013-11-30T22:10:59+00:00] INFO: Run List is [recipe[git::default]]
-[2013-11-30T22:10:59+00:00] INFO: Run List expands to [git::default]
-[2013-11-30T22:10:59+00:00] INFO: Starting Chef Run for default-ubuntu-1204
-[2013-11-30T22:10:59+00:00] INFO: Running start handlers
-[2013-11-30T22:10:59+00:00] INFO: Start handlers complete.
-Compiling Cookbooks...
-Converging 2 resources
-Recipe: git::default
-  * package[git] action install[2013-11-30T22:10:59+00:00] INFO: Processing package[git] action install (git::default line 1)
-
-    - install version 1:1.7.9.5-1 of package git
-
-  * log[Well, that was too easy] action write[2013-11-30T22:11:24+00:00] INFO: Processing log[Well, that was too easy] action write (git::default line 3)
-[2013-11-30T22:11:24+00:00] INFO: Well, that was too easy
-
-
-[2013-11-30T22:11:24+00:00] INFO: Chef Run complete in 24.365178204 seconds
-[2013-11-30T22:11:24+00:00] INFO: Running report handlers
-[2013-11-30T22:11:24+00:00] INFO: Report handlers complete
-Chef Client finished, 2 resources updated
-       Finished converging < default-ubuntu-1204> (0m45.17s).
------> Setting up < default-ubuntu-1204>...
-Fetching: thor-0.18.1.gem (100%)
-Fetching: busser-0.6.0.gem (100%)
-Successfully installed thor-0.18.1
-Successfully installed busser-0.6.0
-2 gems installed
------> Setting up Busser
-       Creating BUSSER_ROOT in /tmp/busser
-       Creating busser binstub
-       Plugin bats installed (version 0.1.0)
------> Running postinstall for bats plugin
-      create  /tmp/bats20131130-4164-uxjzr4/bats
-      create  /tmp/bats20131130-4164-uxjzr4/bats.tar.gz
-Installed Bats to /tmp/busser/vendor/bats/bin/bats
-      remove  /tmp/bats20131130-4164-uxjzr4
-       Finished setting up < default-ubuntu-1204> (0m4.89s).
------> Verifying < default-ubuntu-1204>...
-       Suite path directory /tmp/busser/suites does not exist, skipping.
-Uploading /tmp/busser/suites/bats/git_installed.bats (mode=0644)
------> Running bats test suite
- ✓ git binary is found in PATH
-
-       1 test, 0 failures
-
-       Finished verifying < default-ubuntu-1204> (0m0.98s).
------> Destroying < default-ubuntu-1204>...
-       [default] Forcing shutdown of VM...
-       [default] Destroying VM and associated drives...
-       Vagrant instance < default-ubuntu-1204> destroyed.
-       Finished destroying < default-ubuntu-1204> (0m3.48s).
-       Finished testing < default-ubuntu-1204> (1m43.82s).
------> Kitchen is finished. (1m44.11s)
-</code></pre>
-
-###### Step 3: Verify
+####### kitchen verify
 
 Excellent, 3 success messages just as we had hoped. The reason is because our docker image has met all of the dependencies based on the requirements
 
@@ -721,7 +612,7 @@ Here you can search for any topic that interests you, find information, images, 
 </td>
     </tr>
     <tr>
-      <td class="mdl-data-table__cell--non-numeric">Tag</td> 
+      <td class="mdl-data-table__cell--non-numeric">Tag</td>
       <td class="mdl-data-table__cell--non-numeric" >Should be</td>
       <td class="mdl-data-table__cell--non-numeric" ><code>Alpine Linux</code></td>
       <td class="mdl-data-table__cell--non-numeric" ><button class="mdl-button mdl-js-button mdl-button--icon">
@@ -733,14 +624,14 @@ Here you can search for any topic that interests you, find information, images, 
 </table>
 </div>
 
-##### Conclusion
+#### Conclusion
 
 Use composer to download and manage the dependencies for the project. When that is done, we can proceed to install sculpin and generate the project.
 
-##### Resources
+#### Resources
 
 Determines whether or not a Chef Omnibus package will be installed. There are several different behaviors available.
 
-##### What's next?
+#### What's next?
 
 Use the Research tool's dictionary to search for definitions, synonyms, and usage examples. If you don't already have the Research tool open, you can access the dictionary by clicking the Tools menu and then selecting Define.

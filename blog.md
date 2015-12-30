@@ -11,7 +11,7 @@ permalink: "blog/index.html"
   </h4><p class="meta-section">
   <i class="fa fa-clock-o"></i>
   Posted:
-      <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
+      <time class="dt-published" datetime="{{ post.date | date: "%B %d %Y" }}"><span class="post-date">{{ post.date | date: "%B %d %Y" }}</span></time>
     </p>
   <div class="p-summary">
     {{ post.excerpt }}

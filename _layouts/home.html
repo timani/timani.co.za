@@ -2,25 +2,65 @@
 
 {% include nav.html %}
 
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
+    <div class="mdl-layout ">
 
         <span class="mdl-ripple is-animating" ></span></span></a>
-        <main  class="demo-main mdl-layout__content">
-        {% include header-title.html %}
+        <main  class="mdl-layout__content">
           <div class="demo-container mdl-grid">
               <div class="demo-content mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
                 <div class="section-spacer"></div>
+                {% include header-title.html %}<hr id="separator">
                 {{ content }}
               </div>
                   <div class="mdl-grid">
                       <div class="mdl-cell mdl-cell--8-col">
-                    <img src="https://placehold.it/1200x350" width="100%"></div>
-                      <div class="mdl-cell mdl-cell--4-col"><img src="https://placehold.it/1200x350" width="100%"></div>
+                        <div class="page-archive"><h5 class="section-header-archive">Latest blog posts</h5>
+
+          <article>
+            <div>
+              <a href="/2015/08/15/deplpoying-sculpin-to-google-compute-with-ansible/" class="post-title-archive">Deploying Sculping to Google Compute Engine using Ansible - Part 5 of 5</a>
+            </div>
+            <p class="mdl-color-text--grey-800">
+              Posted: 15 Aug 2015
+            </p>
+          </article>
+          <article>
+            <div>
+              <a href="/2015/08/13/adding-php-libraries-to-the-sculpin-docker-image--part-2-of-4/" class="post-title-archive">Adding PHP libraries to the sculpin docker image - Part 2 of 5</a>
+            </div>
+            <p class="mdl-color-text--grey-800">
+              Posted: 13 Aug 2015
+            </p>
+          </article>
+          <article>
+            <div>
+              <a href="/docker,/tdd/2015/08/13/a-tdd-approach-to-creating-a-minimal-sculpin-docker-image-with-serverspec/" class="post-title-archive">A TDD approach to creating a minimal Sculpin Docker image with Serverspec - Part 1 of 5</a>
+            </div>
+            <p class="mdl-color-text--grey-800">
+              Posted: 13 Aug 2015
+            </p>
+          </article>
+          <article>
+            <div>
+              <a href="/2015/08/12/publishing-a-docker-image-and-automating-tests-with-circleci/" class="post-title-archive">Publishing a docker image and automating tests with travisci - Part 3 of 5</a>
+            </div>
+            <p class="mdl-color-text--grey-800">
+              Posted: 12 Aug 2015
+            </p>
+          </article>
+      </div>
+
+
                     </div>
+                      <div class="mdl-cell mdl-cell--4-col">
+                        <img src="https://placehold.it/320x300" width="100%">
+                      </div>
+                    </div>
+                                    </div>
         </main>
 
     {% include footer.html %}
-   </div>
+            </div>
 {% include scripts.html %}
 {% include analytics.html %}
 {% include chromeframe.html %}

@@ -20,9 +20,9 @@ Almost everybody thinks cloud computing is new concept where as truth is the ide
         <a href="{{ post.url | prepend:site.baseurl}}" class="post-title-archive">{{ post.title }}</a>
       </div>
       <p class="mdl-color-text--grey-800">
-        Posted: {{ post.date | date_to_string }}  
+      <i class="fa fa-clock-o"></i>
+        Posted on: <time class="dt-published" datetime="{{ post.date | date: "%-d %B %Y" }}"><span class="post-date">{{ post.date | date: "%-d %B %Y" }}</span></time>
       </p>
-      <br />
     </article>
 {% endfor %}
 </div>
