@@ -18,7 +18,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 a {
-    color: #00bcd4;
+    color: #337ab7;
     text-transform: none;
     text-decoration: none;
 }
@@ -27,13 +27,21 @@ h1 a,h2 a,h3 a,h4 a,h5 a, h6 a {
     text-decoration: none;
 }
 h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover, h6 a:hover {
-    color: #00bcd4;
+    color: #337ab7;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
 }
 p {
 }
 #top-nav {
   height: auto;
   padding: 0;
+}
+li code, p code {
+    padding: 2px 4px;
+    font-size: 85%;
+    background: #efefef;
 }
 .demo-ribbon {
   width: 100%;
@@ -45,7 +53,7 @@ p {
 }
 
 .demo-main {
-  margin-top: 0vh;
+  margin-top: 10vh;
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
@@ -62,13 +70,12 @@ p {
     display: inline;
 }
 .demo-container {
-  max-width: 1200px;
+  max-width: 1000px;
   width: calc(100% - 16px);
   margin: 0 auto;
 }
 .demo-content {
   border-radius: 0px;
-  margin: 10px auto;
 }
 
 .demo-header {
@@ -157,7 +164,7 @@ p {
   margin: 20px 0 40px;
 }
 .demo-crumbs a {
-    color: #00bcd4 !important;
+    color: #337ab7 !important;
     font-weight: normal;
     text-decoration: none;
 }
@@ -179,6 +186,9 @@ p {
     margin: 0 auto;
     width: 400px;
 }
+a.mdl-layout__tab:hover {
+    color: #337ab7;
+}
 .main-nav-container a.mdl-navigation__link{
     font-size: 18px;
     font-weight: normal;
@@ -192,7 +202,9 @@ p {
 .mdl-layout__tab-bar {
   height: auto;
 }
-
+.mdl-layout__drawer-button {
+  margin: 0px 12px;
+}
 .mdl-layout__header-row .mdl-navigation.main-nav {
   margin: 0 auto;
 }
@@ -215,3 +227,7 @@ p {
     margin: 3em auto;
     background-color: #d4d4d4;
 }
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
+    background: #337ab7;
+  }

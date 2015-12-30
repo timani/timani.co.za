@@ -8,13 +8,15 @@ permalink: "blog/index.html"
 <article class="h-entry">
   <h4 class="post-title-home">
     <a href="{{ post.url | prepend:site.base-url }}" >{{ post.title }}</a>
-  </h4>
-  <div class="p-summary">
-    {{ post.excerpt }}
-  </div><p class="meta-section mdl-color-text--grey-500">
-      Posted:
+  </h4><p class="meta-section">
+  <i class="fa fa-clock-o"></i>
+  Posted:
       <time class="dt-published" datetime="2013-06-13 12:00:00"><span class="tutorial-date">Oct 14, 2013</span></time>
     </p>
+  <div class="p-summary">
+    {{ post.excerpt }}
+      <a href="{{ "/archive" | prepend:site.baseurl }}" class="btn btn-primary btn-block btn-lg"> Read More &raquo;</a>
+  </div>
   </article>
 <div class="separator"></div>
 {% endfor %}
