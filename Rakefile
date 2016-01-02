@@ -164,7 +164,7 @@ task :watch, :option do |t, args|
     execute("jekyll serve --watch")
   else
     if option == "drafts"
-      execute("jekyll serve --watch --drafts")
+      execute("jekyll serve --watch --drafts")        
     else
       execute("jekyll serve --watch --limit_posts #{option}")
     end

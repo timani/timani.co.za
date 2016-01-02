@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A TDD approach to creating a minimal Sculpin Docker image with Serverspec - Part 1 of 5
-categories: Docker, TDD
+categories: Docker TDD
 ---
 
 We most frequently use Curl in the form of `libcurl`, a C library providing function transferring data between servers using many of the popular protocols like HTTP, FTP, SCP, and so on. This library is the foundation things like all the curl_*() functions in PHP, which are useful for writing code that interacts with various web services.
@@ -10,7 +10,8 @@ We most frequently use Curl in the form of `libcurl`, a C library providing func
 
 #### Summary
 
-This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.
+This is sample project for Test Driven Development (TDD) of Dockerfile by RSpec. This means developing dockerfile by below cycle.For example, in our case we will be looking at the Configuration of the container to make sure ruby is installed.
+
 
 ####### Table of contents
 
@@ -109,7 +110,9 @@ Table 1: Docker PHP requirements
 
 - what this section is about
 
-Once we have the requirements we can proceed to setup and configure test-kitchen.
+Once we have the requirements we can proceed to setup and configure test-kitchen. Once you have purchased the VMware plugin and received a license file, you can install the Vagrant plugin and license with the following:
+
+<p><img src="http://127.0.0.1:4000/img/kitchen-overview.svg"></p>
 
 - why it matters
 
@@ -164,7 +167,15 @@ kitchen init --driver=docker --provisioner=ansible_playbook
       append  .gitignore
 </code></pre>
 
-The
+For example, if you want to execute some custom functionality every time Jekyll renders a post. If your plugin defines any hooks, Jekyll will call them at pre-defined points.
+
+<pre><code class="language-bash">rake -T
+rake kitchen:all                  # Run all test instances
+rake kitchen:default-centos-71    # Run default-centos-71 test instance
+rake kitchen:default-ubuntu-1404  # Run default-ubuntu-1404 test instance
+</code></pre>
+
+Hooks are registered to a container and an event name. To register one, you call Jekyll::Hooks.register, and pass the container, event name.
 
 ###### Configure Test Kitchen
 
@@ -265,6 +276,13 @@ A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as l
           state: present
 </code></pre>
 
+So what's this default-ubuntu-1204 thing and what's an "Instance"? A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as laid out in your .kitchen.yml file.
+
+- `Instance`: A "Test Kitchen driver" - it tells test-kitchen how to interact with an appliance (machine), such as Vagrant, EC2, Rackspace, etc.
+- `Driver`: To validate the images we will use serverspec.
+- `provisioner`: A "Test Kitchen driver" - it tells test-kitchen how to interact with an appliance (machine), such as Vagrant, EC2, Rackspace, etc.
+- `Last Action`: To validate the images we will use serverspec.
+
 #### Building test suites with Serverspec
 
 and create the first outline of our tests.
@@ -298,6 +316,16 @@ Input target host name: www.example.jp
 
 - takeaways
 
+Test Kitchen has auto-named your only instance by combining the Suite name (“default”) and the Platform name (“ubuntu-12.04”) into a form that is safe for DNS and hostname records, namely “default-ubuntu-1204”
+
+<pre><code class="language-bash">rake -T
+rake kitchen:all                  # Run all test instances
+rake kitchen:default-centos-71    # Run default-centos-71 test instance
+rake kitchen:default-ubuntu-1404  # Run default-ubuntu-1404 test instance
+rake spec:sculpin                 # Run serverspec tests to sculpin
+</code></pre>
+
+A Test Kitchen Instance is a pairwise combination of a Suite and a Platform as laid out in your .kitchen.yml file.
 
 ####### Create default test suite
 
@@ -448,7 +476,7 @@ Uploading /tmp/busser/suites/bats/git_installed.bats (mode=0644)
 
 The Platform name ("ubuntu-12.04") into a form that is safe for DNS and hostname records, namely "default-ubuntu-1204"
 
-< IMAGE OF FLOW >
+<p><img src="http://127.0.0.1:4000/img/part-1.svg?s"></p>
 
 ####### kitchen create
 

@@ -81,3 +81,9 @@ exclude: ['config.rb', 'Gemfile.lock']
 
 git:
   branch: gh-pages
+
+env:
+  dev:
+    url: http://127.0.0.1:4000
+  prod:
+    url: https://timani.github.io/timani.co.za
