@@ -1,8 +1,8 @@
 # Hugo variables
 #
-baseurl = "https://example.org/"
+baseurl = "https://timani.co.za/"
 languageCode = "en-us"
-title = "Hugo Bootstrap v4 Blog"
+title = "Timani's Blog"
 theme = "hugo-theme-bootstrap4-blog"
 # number of posts to show on home/category/tag pages (Default: 10)
 paginate = 5
