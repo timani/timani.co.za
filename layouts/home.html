@@ -1,0 +1,53 @@
+
+{{ define "main" }}
+
+
+	<main class="content" role="main">
+		<div class="row mb-3">
+    <div class="col-md-4"><figure class="image is-4by3">
+          <img src="https://themes.gohugo.io//theme/hugo-fresh/images/illustrations/worker.svg" alt="Description">
+        </figure></div>
+    <div class="col-md-8"><div class="column is-5 is-offset-1 landing-caption">
+        <h1 class="title is-1 is-bold is-spaced mb-3">
+          Manage. Deploy.
+        </h1>
+
+        <h3 class="subtitle is-5 is-muted">
+          Lorem ipsum sit dolor amet is dummy text used by the typography industry
+        </h3>
+        <br />
+        <p>
+          <a class="rounded btn btn-primary" href="/about" title="More about Timani Tunduwani">
+            About Me &raquo;
+          </a>
+            <a class="rounded btn btn-success" href="/posts" title="Read my blog">
+              Read the blog &raquo;
+            </a>
+        </p>
+      </div></div>
+  </div>
+	<hr class="mb-5" />
+
+  {{ $paginator := .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
+  <div class="posts mb-5">
+    <h3 class="mb-4"> Recent Posts</h3>
+      {{ range $paginator.Pages }}
+      {{ $dateFormat := default "Mon Jan 2, 2006" (index .Site.Params "date_format") }}
+
+      <div class="posts">
+        <header  class="row">
+          <div class="col-md-8"><h5><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h5></div>
+          <p class="col-md-4 text-right">
+            <a href="{{ .Permalink }}">
+              <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format $dateFormat }}</time>
+            </a>
+          </p>
+        </header>
+      </div> <!-- /.blog-post -->
+      {{ end }}
+
+  </div>
+
+
+	</main>
+{{ end }}
