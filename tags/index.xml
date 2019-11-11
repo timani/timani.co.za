@@ -1,0 +1,50 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Timani&#39;s Blog</title>
+    <link>https://timani.co.za/tags/</link>
+    <description>Recent content in Tags on Timani&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Mar 2019 02:01:58 +0530</lastBuildDate>
+    
+        <atom:link href="https://timani.co.za/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>incident-management</title>
+      <link>https://timani.co.za/tags/incident-management/</link>
+      <pubDate>Mon, 11 Mar 2019 02:01:58 +0530</pubDate>
+      
+      <guid>https://timani.co.za/tags/incident-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metrics</title>
+      <link>https://timani.co.za/tags/metrics/</link>
+      <pubDate>Mon, 11 Mar 2019 02:01:58 +0530</pubDate>
+      
+      <guid>https://timani.co.za/tags/metrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Procrastinating</title>
+      <link>https://timani.co.za/tags/procrastinating/</link>
+      <pubDate>Sun, 18 Mar 2018 12:13:32 +0530</pubDate>
+      
+      <guid>https://timani.co.za/tags/procrastinating/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Space</title>
+      <link>https://timani.co.za/tags/space/</link>
+      <pubDate>Sun, 18 Mar 2018 12:13:30 +0530</pubDate>
+      
+      <guid>https://timani.co.za/tags/space/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
